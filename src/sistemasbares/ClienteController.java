@@ -5,13 +5,19 @@
  */
 package sistemasbares;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -35,10 +41,17 @@ public class ClienteController implements Initializable {
     private Menu menuBuscar;
     @FXML
     private Menu menuLogOut;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private StackPane loaderPane;
+    
+    @FXML
+    private void showListarCategorias(ActionEvent event) throws IOException{
+        loaderPane.getChildren().clear();
+        Node n = FXMLLoader.load(getClass().getResource("ListarCategorias.fxml"));
+        loaderPane.getChildren().add(n);
+        StackPane.setAlignment(n,Pos.CENTER);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

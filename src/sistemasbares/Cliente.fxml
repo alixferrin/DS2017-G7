@@ -4,7 +4,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="745.0" prefWidth="1118.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.ClienteController">
    <children>
@@ -12,7 +12,7 @@
         <menus>
           <Menu fx:id="menuClategorias" mnemonicParsing="false" text="Categorias">
             <items>
-              <MenuItem fx:id="menuListCategoria" mnemonicParsing="false" text="Listar Categorias" />
+              <MenuItem fx:id="menuListCategoria" mnemonicParsing="false" onAction="#showListarCategorias" text="Listar Categorias" />
                   <Menu fx:id="menuPlatos" mnemonicParsing="false" text="Platos">
                     <items>
                       <MenuItem fx:id="menuMostrarPlatos" mnemonicParsing="false" text="Mostrar Platos" />
@@ -25,6 +25,6 @@
           <Menu fx:id="menuLogOut" mnemonicParsing="false" text="Cerrar Sesión" />
         </menus>
       </MenuBar>
-      <Pane layoutY="26.0" prefHeight="720.0" prefWidth="1118.0" />
+      <StackPane fx:id="loaderPane" layoutY="26.0" prefHeight="719.0" prefWidth="1118.0" />
    </children>
 </AnchorPane>
