@@ -63,8 +63,10 @@ public class LogginController implements Initializable {
             Conexion.statement = Conexion.connection.createStatement();
             Conexion.result = Conexion.statement.executeQuery("SELECT * FROM usuario_tb");
             while (Conexion.result.next()){
-                String usr = Conexion.result.getString(3);
-                String pwrd = Conexion.result.getString(4);
+                String usr = Conexion.result.getString(4);
+                String pwrd = Conexion.result.getString(5);
+                System.out.println(usr);
+                System.out.println(pwrd);
                 if (!txtUsuario.getText().equals(usr) || !txtPassword.getText().equals(pwrd))
                     lblNada.setText("Usuario o Contraseña incorrecta :(");
                 else
@@ -78,9 +80,10 @@ public class LogginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String user = "root";
+        String pwrd = "saverio.1995";
         try{
             //Esta clase sirve para generar la conexion en SQL
-            Conexion.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, "");
+            Conexion.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, pwrd);
         }catch(SQLException ex){
             Logger.getLogger(LogginController.class.getName()).log(Level.SEVERE, null, ex);
         }
