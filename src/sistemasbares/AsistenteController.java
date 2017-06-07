@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +30,7 @@ public class AsistenteController implements Initializable {
     @FXML
     private Menu menuAgregarPlatillo;
     @FXML
-    private Menu menuPlatillos;
+    private MenuItem menuPlatillos;
     @FXML
     private MenuItem menuListarPlatillos;
     @FXML
@@ -48,8 +47,7 @@ public class AsistenteController implements Initializable {
     private StackPane loaderPane;
 
     @FXML
-    private void showAgregarPlatillo(Event event) throws IOException {
-        System.out.println(event);
+    private void showAgregarPlatillo(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
         Node n = FXMLLoader.load(getClass().getResource("AgregarPlatillo.fxml"));
         loaderPane.getChildren().add(n);

@@ -10,10 +10,10 @@
    <children>
       <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="25.0" prefWidth="1118.0">
          <menus>
-            <Menu fx:id="menuAgregarPlatillo" mnemonicParsing="false" onHiding="#showAgregarPlatillo" onShowing="#showAgregarPlatillo" text="Agregar Platillos">
-                <items>
-                </items>
-            </Menu>
+            <Menu fx:id="menuAgregarPlatillo" mnemonicParsing="false" text="Agregar ...">
+               <items>
+                  <MenuItem fx:id="menuPlatillo" mnemonicParsing="false" onAction="#showAgregarPlatillo" text="Platillo" />
+               </items></Menu>
             <Menu fx:id="menuPlatillos" mnemonicParsing="false" text="Platillos">
                <items>
                   <MenuItem fx:id="menuListarPlatillos" mnemonicParsing="false" text="Listar Platillos" />
