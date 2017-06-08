@@ -45,9 +45,9 @@ public class ClienteController implements Initializable {
     private StackPane loaderPane;
     
     @FXML
-    private void showListarCategorias(ActionEvent event) throws IOException{
+    private void showListarCategoriasCLIE(ActionEvent event) throws IOException{
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("ListarCategorias.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("ListarCategoriasCLIE.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
     }

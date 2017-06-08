@@ -12,13 +12,7 @@
         <menus>
           <Menu fx:id="menuClategorias" mnemonicParsing="false" text="Categorias">
             <items>
-              <MenuItem fx:id="menuListCategoria" mnemonicParsing="false" onAction="#showListarCategorias" text="Listar Categorias" />
-                  <Menu fx:id="menuPlatos" mnemonicParsing="false" text="Platos">
-                    <items>
-                      <MenuItem fx:id="menuMostrarPlatos" mnemonicParsing="false" text="Mostrar Platos" />
-                        <MenuItem fx:id="menuMostrarPlatillos" mnemonicParsing="false" text="Mostrar Platillos" />
-                    </items>
-                  </Menu>
+              <MenuItem fx:id="menuListCategoria" mnemonicParsing="false" onAction="#showListarCategoriasCLIE" text="Listar Categorias" />
             </items>
           </Menu>
           <Menu fx:id="menuBuscar" mnemonicParsing="false" text="Buscar" />

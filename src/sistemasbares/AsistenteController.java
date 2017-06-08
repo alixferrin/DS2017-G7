@@ -53,6 +53,22 @@ public class AsistenteController implements Initializable {
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
     }
+    
+    @FXML
+    private void showListarPlatillos(ActionEvent event) throws IOException {
+        loaderPane.getChildren().clear();
+        Node n = FXMLLoader.load(getClass().getResource("ListarPlatillos.fxml"));
+        loaderPane.getChildren().add(n);
+        StackPane.setAlignment(n, Pos.CENTER);
+    }
+    
+    @FXML
+    private void showListarCategoriasASIS(ActionEvent event) throws IOException {
+        loaderPane.getChildren().clear();
+        Node n = FXMLLoader.load(getClass().getResource("ListarCategoriasASIS.fxml"));
+        loaderPane.getChildren().add(n);
+        StackPane.setAlignment(n, Pos.CENTER);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

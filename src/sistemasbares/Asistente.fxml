@@ -16,14 +16,12 @@
                </items></Menu>
             <Menu fx:id="menuPlatillos" mnemonicParsing="false" text="Platillos">
                <items>
-                  <MenuItem fx:id="menuListarPlatillos" mnemonicParsing="false" text="Listar Platillos" />
-                  <MenuItem fx:id="menuMosdificarPlatillos" mnemonicParsing="false" text="Modificar Platillos" />
+                  <MenuItem fx:id="menuListarPlatillos" mnemonicParsing="false" onAction="#showListarPlatillos" text="Listar Platillos" />
                </items>
             </Menu>
             <Menu fx:id="menuCategorias" mnemonicParsing="false" text="Categorias">
                <items>
-                  <MenuItem fx:id="menuMostrarPlatillo" mnemonicParsing="false" text="Mostrar Platillo" />
-                  <MenuItem fx:id="menuModPlatillo" mnemonicParsing="false" text="Modificar Platillo" />
+                  <MenuItem fx:id="menuMostrarPlatillo" mnemonicParsing="false" onAction="#showListarCategoriasASIS" text="Listar Categorias" />
                </items>
             </Menu>
             <Menu fx:id="menuLogOut" mnemonicParsing="false" text="Cerrar Sesión" />

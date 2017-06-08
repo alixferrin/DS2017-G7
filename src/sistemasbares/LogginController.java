@@ -47,10 +47,7 @@ public class LogginController implements Initializable {
     private void showMenu(ActionEvent event, String fxmlDocument) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         try{
-            if (txtUsuario.getText().toLowerCase().equals("cliente"))
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlDocument))));
-            else
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlDocument))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlDocument))));
             stage.centerOnScreen();
         }catch(IOException e){ 
             e.printStackTrace();
@@ -65,12 +62,16 @@ public class LogginController implements Initializable {
             while (Conexion.result.next()){
                 String usr = Conexion.result.getString(4);
                 String pwrd = Conexion.result.getString(5);
+                String lvl = Conexion.result.getString(6);
                 System.out.println(usr);
                 System.out.println(pwrd);
+                System.out.println(lvl);
                 if (!txtUsuario.getText().equals(usr) || !txtPassword.getText().equals(pwrd))
                     lblNada.setText("Usuario o Contraseña incorrecta :(");
-                else
+                else if (lvl.equals("1"))
                     this.showMenu(event, "Cliente.fxml");
+                else if (lvl.equals("2"))
+                    this.showMenu(event, "Asistente.fxml");
             }
         }catch (Exception e){
             e.printStackTrace();
