@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="lblCategoria" prefHeight="648.0" prefWidth="1063.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="sistemasbares.BuscarController">
+<AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="1063.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.BuscarController">
    <children>
       <Label layoutX="66.0" layoutY="82.0" text="Buscar: ">
          <font>
@@ -53,7 +52,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblRestaurante" layoutX="431.0" layoutY="193.0">
+      <Label fx:id="lblCategoria" layoutX="431.0" layoutY="193.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -68,5 +67,10 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="btnMostrarInfo" layoutX="163.0" layoutY="593.0" mnemonicParsing="false" onAction="#showMostrarInfo" text="Mostrar Información">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -25,8 +25,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class BuscarController implements Initializable {
     @FXML
-    private AnchorPane lblCategoria;
-    @FXML
     private TextField txtBusqueda;
     @FXML
     private Button btnBuscar;
@@ -42,6 +40,10 @@ public class BuscarController implements Initializable {
     private Label lblNombre;
     @FXML
     private Label lblRestaurante;
+    @FXML
+    private Button btnMostrarInfo;
+    @FXML
+    private Label lblCategoria;
 
     /**
      * Initializes the controller class.
@@ -53,6 +55,11 @@ public class BuscarController implements Initializable {
 
     @FXML
     private void buscar(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void showMostrarInfo(ActionEvent event) {
         
     }
     

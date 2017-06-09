@@ -7,8 +7,10 @@ package sistemasbares;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -37,6 +39,8 @@ public class ListarCategoriasCLIEController implements Initializable {
     private Label lblCateogoria;
     @FXML
     private TextArea txtIngredientes;
+    @FXML
+    private Button btnMostrarInfo;
 
     /**
      * Initializes the controller class.
@@ -45,5 +49,10 @@ public class ListarCategoriasCLIEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void mostrarInformacion(ActionEvent event) {
+        
+    }
     
 }
