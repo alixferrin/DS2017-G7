@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" fx:id="lblCategoria" prefHeight="648.0" prefWidth="1063.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="sistemasbares.BuscarController">
+   <children>
+      <Label layoutX="66.0" layoutY="82.0" text="Buscar: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBusqueda" layoutX="114.0" layoutY="79.0" prefHeight="25.0" prefWidth="444.0" />
+      <Button fx:id="btnBuscar" layoutX="574.0" layoutY="79.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+      <ListView fx:id="lstPlatillos" layoutX="66.0" layoutY="124.0" prefHeight="459.0" prefWidth="244.0" />
+      <Label layoutX="336.0" layoutY="123.0" text="Nombre:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="158.0" text="Restaurante:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="193.0" text="Categoria:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtDescripcion" disable="true" layoutX="336.0" layoutY="385.0" prefHeight="200.0" prefWidth="289.0" />
+      <TextArea fx:id="txtIngredientes" disable="true" layoutX="336.0" layoutY="258.0" prefHeight="88.0" prefWidth="289.0" />
+      <Label layoutX="642.0" layoutY="120.0" text="Imagen:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgImagen" fitHeight="431.0" fitWidth="341.0" layoutX="642.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblNombre" layoutX="431.0" layoutY="123.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRestaurante" layoutX="431.0" layoutY="158.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRestaurante" layoutX="431.0" layoutY="193.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="233.0" text="Ingredientes:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="361.0" text="Descripción:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

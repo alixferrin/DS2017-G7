@@ -14,10 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,21 +30,15 @@ public class ClienteController implements Initializable {
     @FXML
     private MenuBar menuBar;
     @FXML
-    private Menu menuCliente;
-    @FXML
-    private MenuItem menuCategoria;
-    @FXML
-    private Menu menuPlatos;
-    @FXML
-    private MenuItem menuMostrarPlatos;
-    @FXML
-    private MenuItem menuMostrarPlatillos;
-    @FXML
     private Menu menuBuscar;
     @FXML
     private Menu menuLogOut;
     @FXML
     private StackPane loaderPane;
+    @FXML
+    private Menu menuClategorias;
+    @FXML
+    private MenuItem menuListCategoria;
     
     @FXML
     private void showListarCategoriasCLIE(ActionEvent event) throws IOException{
@@ -56,5 +52,23 @@ public class ClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void showBuscar(ActionEvent event) throws IOException {
+        loaderPane.getChildren().clear();
+        Node n = FXMLLoader.load(getClass().getResource("Buscar.fxml"));
+        loaderPane.getChildren().add(n);
+        StackPane.setAlignment(n,Pos.CENTER);
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) throws IOException {
+        System.out.println("falta por implementar :v");
+    }
+
+    @FXML
+    private void cerrar(ActionEvent event) {
+        System.exit(0);
+    }
     
 }

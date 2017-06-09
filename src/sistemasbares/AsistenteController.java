@@ -34,17 +34,15 @@ public class AsistenteController implements Initializable {
     @FXML
     private MenuItem menuListarPlatillos;
     @FXML
-    private MenuItem menuMosdificarPlatillos;
-    @FXML
     private Menu menuCategorias;
     @FXML
     private MenuItem menuMostrarPlatillo;
     @FXML
-    private MenuItem menuModPlatillo;
-    @FXML
     private Menu menuLogOut;
     @FXML
     private StackPane loaderPane;
+    @FXML
+    private MenuItem menuPlatillo;
 
     @FXML
     private void showAgregarPlatillo(ActionEvent event) throws IOException {
@@ -74,5 +72,15 @@ public class AsistenteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        System.out.println("Falta de implementar :v");
+    }
+
+    @FXML
+    private void cerrar(ActionEvent event) {
+        System.exit(0);
+    }
     
 }

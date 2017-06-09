@@ -63,9 +63,6 @@ public class LogginController implements Initializable {
                 String usr = Conexion.result.getString(4);
                 String pwrd = Conexion.result.getString(5);
                 String lvl = Conexion.result.getString(6);
-                System.out.println(usr);
-                System.out.println(pwrd);
-                System.out.println(lvl);
                 if (!txtUsuario.getText().equals(usr) || !txtPassword.getText().equals(pwrd))
                     lblNada.setText("Usuario o Contraseña incorrecta :(");
                 else if (lvl.equals("1"))

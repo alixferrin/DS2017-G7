@@ -24,7 +24,11 @@
                   <MenuItem fx:id="menuMostrarPlatillo" mnemonicParsing="false" onAction="#showListarCategoriasASIS" text="Listar Categorias" />
                </items>
             </Menu>
-            <Menu fx:id="menuLogOut" mnemonicParsing="false" text="Cerrar Sesión" />
+            <Menu fx:id="menuLogOut" mnemonicParsing="false" text="Cerrar ...">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#cerrar" text="Cerrar Aplicación" />
+               </items></Menu>
          </menus>
       </MenuBar>
       <StackPane fx:id="loaderPane" layoutY="26.0" prefHeight="719.0" prefWidth="1118.0" />
