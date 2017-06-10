@@ -24,7 +24,7 @@ import javafx.scene.image.ImageView;
  */
 public class ListarCategoriasASISController implements Initializable {
     @FXML
-    private ListView<?> lstPlatillos;
+    private ListView lstPlatillos;
     @FXML
     private TextArea txtDescripcion;
     @FXML
@@ -46,7 +46,7 @@ public class ListarCategoriasASISController implements Initializable {
     @FXML
     private Button btnCargarIMG;
     @FXML
-    private ComboBox<?> cmbCategorias;
+    private ComboBox cmbCategorias;
     @FXML
     private Button btnMostrarInfo;
 

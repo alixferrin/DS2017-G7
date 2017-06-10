@@ -144,3 +144,7 @@ INSERT INTO menu_tb VALUE ('RST06', 'PLT12');
 INSERT INTO menu_tb VALUE ('RST07', 'PLT12');
 INSERT INTO menu_tb VALUE ('RST08', 'PLT12');
 INSERT INTO menu_tb VALUE ('RST09', 'PLT12');
+
+SELECT nombre_pla, descrp_pla, categoria, imagen FROM platillo_tb WHERE nombre_pla = 'CEVICHE DE PESCADO';
+
+SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = 'ENCEBOLLADO';

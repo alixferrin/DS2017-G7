@@ -67,6 +67,12 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `getInfoPla` (IN nom VARCHAR(50))
+BEGIN
+	SELECT nombre_pla, descrp_pla, categoria, imagen FROM platillo_tb WHERE nombre_pla = nom;
+END $$
+DELIMITER
 
 /*PARA restaurante_tb*/
 DELIMITER $$
@@ -90,6 +96,13 @@ CREATE PROCEDURE `listarRestaurantes` ()
 BEGIN
 	SELECT *
     from restaurante_tb; 
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getRest` (IN nom VARCHAR(50))
+BEGIN
+	SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = 'ENCEBOLLADO';
 END $$
 DELIMITER ;
 
@@ -118,3 +131,4 @@ BEGIN
     where nickname = nick and pass = pass; 
 END $$
 DELIMITER ;
+

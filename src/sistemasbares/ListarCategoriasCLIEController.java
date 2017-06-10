@@ -5,6 +5,8 @@
  */
 package sistemasbares;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -16,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -50,6 +53,7 @@ public class ListarCategoriasCLIEController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtDescripcion.setWrapText(true);
         try{
             Conexion.procedure = Conexion.connection.prepareCall("{call listCategorias()}");
             Conexion.result = Conexion.procedure.executeQuery();
@@ -62,20 +66,26 @@ public class ListarCategoriasCLIEController implements Initializable {
     }    
 
     @FXML
-    private void mostrarInformacion(ActionEvent event) throws SQLException {
+    private void mostrarInformacion(ActionEvent event) throws SQLException, FileNotFoundException {
         lblNombre.setText("");
-        lblRestaurante.setText("");
         lblCateogoria.setText("");
         txtDescripcion.clear();
         lstRestaurante.getItems().clear();
         txtIngredientes.clear();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
-        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatillo('" + nombrePla + "')}");
+        Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        Conexion.result.next();
+        lblNombre.setText(Conexion.result.getString(1));
+        lblCateogoria.setText(Conexion.result.getString(3));
+        txtDescripcion.setText(Conexion.result.getString(2));
+        Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
+        imgImagen.setImage(imagen);
+        Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
         while (Conexion.result.next()){
-            
+            lstRestaurante.getItems().add(Conexion.result.getString(1));
         }
-        
     }
 
     @FXML
