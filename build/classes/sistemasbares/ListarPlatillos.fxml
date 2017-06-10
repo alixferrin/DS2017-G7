@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="sistemasbares.ListarPlatillosController">
+<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.ListarPlatillosController">
    <children>
       <ListView fx:id="lstPlatillos" layoutX="43.0" layoutY="33.0" prefHeight="459.0" prefWidth="244.0" />
       <Label layoutX="313.0" layoutY="32.0" text="Nombre:">
@@ -53,5 +52,6 @@
       <Button fx:id="btnGuardar" layoutX="543.0" layoutY="499.0" mnemonicParsing="false" text="Guardar" />
       <Button fx:id="btnLimpiar" layoutX="380.0" layoutY="499.0" mnemonicParsing="false" text="Limpiar" />
       <Button fx:id="btnCargarIMG" layoutX="865.0" layoutY="499.0" mnemonicParsing="false" text="Cargar Imagen" />
+      <Button fx:id="btnMostrarInfo" layoutX="165.0" layoutY="499.0" mnemonicParsing="false" onAction="#mostrarInfo" text="Mostrar Información" />
    </children>
 </AnchorPane>

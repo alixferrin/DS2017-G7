@@ -56,6 +56,26 @@ public class LogginController implements Initializable {
     
     @FXML
     private void loggin(ActionEvent event){
+        String usr = txtUsuario.getText();
+        String pwrd = txtPassword.getText();
+        String level = "";
+        try{
+            Conexion.procedure = Conexion.connection.prepareCall("{Call login('" + usr + "','" + pwrd + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            if (!Conexion.result.next())
+                lblNada.setText("Usuario o contraseña incorrecta");
+            else{
+                level = Conexion.result.getString(1);
+                if (level.equals('1'))
+                    this.showMenu(event, "Cliente.fxml");
+                else
+                    this.showMenu(event, "Asistente.fxml");
+                
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        /*
         try{
             Conexion.statement = Conexion.connection.createStatement();
             Conexion.result = Conexion.statement.executeQuery("SELECT * FROM usuario_tb");
@@ -73,6 +93,7 @@ public class LogginController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+        */
     }
     
     @Override
