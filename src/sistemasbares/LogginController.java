@@ -75,25 +75,6 @@ public class LogginController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-        /*
-        try{
-            Conexion.statement = Conexion.connection.createStatement();
-            Conexion.result = Conexion.statement.executeQuery("SELECT * FROM usuario_tb");
-            while (Conexion.result.next()){
-                String usr = Conexion.result.getString(4);
-                String pwrd = Conexion.result.getString(5);
-                String lvl = Conexion.result.getString(6);
-                if (!txtUsuario.getText().equals(usr) || !txtPassword.getText().equals(pwrd))
-                    lblNada.setText("Usuario o Contraseña incorrecta :(");
-                else if (lvl.equals("1"))
-                    this.showMenu(event, "Cliente.fxml");
-                else if (lvl.equals("2"))
-                    this.showMenu(event, "Asistente.fxml");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        */
     }
     
     @Override
