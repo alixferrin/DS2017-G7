@@ -39,7 +39,7 @@ DELIMITER $$
 CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(50), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10))
 BEGIN
 	update platillo_tb
-    set nombre_pla = newNombre, descrp_pla = newDescrip, id_categoria = newCategoria, temperatura_pla = newTemp, imagen = newImage, id_tipo = newTipo, servido = newServido
+    set nombre_pla = newNombre, descrp_pla = newDescrip, categoria = newCategoria, temperatura_pla = newTemp, imagen = newImage, tipo = newTipo, servido = newServido
     where id_platillo = ID;
 END $$
 DELIMITER ;
@@ -50,6 +50,20 @@ BEGIN
 	SELECT *
     from menu_tb 
     where nombre_pla like concat('%', nombre, '%') or descrp_pla like concat('%', descrp, '%');
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `listCategorias`()
+BEGIN
+	SELECT DISTINCT categoria FROM platillo_tb;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `mostrarPlatillos` (IN cat VARCHAR(50))
+BEGIN
+	SELECT nombre_pla FROM platillo_tb WHERE categoria = cat;
 END $$
 DELIMITER ;
 
@@ -99,11 +113,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50))
 BEGIN
-	SELECT nickname
+	SELECT level
     from usuario_tb
     where nickname = nick and pass = pass; 
 END $$
 DELIMITER ;
-
-
-

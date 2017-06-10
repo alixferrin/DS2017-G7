@@ -66,7 +66,8 @@ public class LogginController implements Initializable {
                 lblNada.setText("Usuario o contraseña incorrecta");
             else{
                 level = Conexion.result.getString(1);
-                if (level.equals('1'))
+                System.out.println(level);
+                if (level.equals("1"))
                     this.showMenu(event, "Cliente.fxml");
                 else
                     this.showMenu(event, "Asistente.fxml");
