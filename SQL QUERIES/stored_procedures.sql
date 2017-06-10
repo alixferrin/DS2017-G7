@@ -99,6 +99,15 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50), OUT usu_nick varchar(50))
+BEGIN
+	SELECT nickname
+    into usu_nick
+    from usuario_tb
+    where nickname = nick and password = pass; 
+END $$
+DELIMITER ;
 
 
 
