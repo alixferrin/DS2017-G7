@@ -19,9 +19,9 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `buscarMenu` (IN Idrest varchar(10), OUT newIdPlatillo varchar(10))
+CREATE PROCEDURE `buscarMenu` (IN Idrest varchar(10))
 BEGIN
-	SELECT id_platillo into newIdPlatillo from menu_tb where id_restaurante = Idrest;
+	SELECT * from menu_tb where id_restaurante = Idrest;
 END $$
 DELIMITER ;
 
@@ -45,11 +45,9 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `buscarPlatillo` (IN nombre varchar(50), IN descrp varchar(250), OUT nombrePla varchar(50), OUT descrpPla varchar(250), 
-									OUT categoria varchar(50), OUT temperatura_pla int(4), OUT img varchar(50), OUT tipo varchar(50), OUT serv varchar(10))
+CREATE PROCEDURE `buscarPlatillo` (IN nombre varchar(50), IN descrp varchar(250))
 BEGIN
-	SELECT nombre_pla, descrp_pla, id_categoria, temperatura_pla, imagen, id_tipo, servido 
-    into nombrePla, descrpPla, categoria, temperatura_pla, img, tipo, serv 
+	SELECT *
     from menu_tb 
     where nombre_pla like concat('%', nombre, '%') or descrp_pla like concat('%', descrp, '%');
 END $$
@@ -74,10 +72,9 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `buscarRestaurante` (OUT id varchar(10), OUT nombre varchar(50), OUT direccion varchar(50), OUT telf varchar(50), OUT dueno varchar(50), OUT asist varchar(10))
+CREATE PROCEDURE `listarRestaurantes` ()
 BEGIN
-	SELECT id_restaurante, nombre_rest, direccion_rest, telf_rest, dueno_rest, asist_rest
-    into id, nombre, direccion, telf, dueno, asist 
+	SELECT *
     from restaurante_tb; 
 END $$
 DELIMITER ;
@@ -100,12 +97,11 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50), OUT usu_nick varchar(50))
+CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50))
 BEGIN
 	SELECT nickname
-    into usu_nick
     from usuario_tb
-    where nickname = nick and password = pass; 
+    where nickname = nick and pass = pass; 
 END $$
 DELIMITER ;
 
