@@ -80,6 +80,3 @@ INSERT INTO menu_tb VALUE ('RST08', 'PLT12');
 INSERT INTO menu_tb VALUE ('RST09', 'PLT04');
 INSERT INTO menu_tb VALUE ('RST09', 'PLT05');
 INSERT INTO menu_tb VALUE ('RST09', 'PLT08');
-
-
- 

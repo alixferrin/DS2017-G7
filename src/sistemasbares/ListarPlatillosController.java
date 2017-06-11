@@ -76,6 +76,7 @@ public class ListarPlatillosController implements Initializable {
         txtCategoria.setText("");
         txtDescripcion.clear();
         txtIngredientes.clear();
+        lstRestaurante.getItems().clear();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
         Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
@@ -83,9 +84,10 @@ public class ListarPlatillosController implements Initializable {
         txtNombre.setText(Conexion.result.getString(1));
         txtCategoria.setText(Conexion.result.getString(3));
         txtDescripcion.setText(Conexion.result.getString(2));
+        txtIngredientes.setText(Conexion.result.getString(5));
         Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
         imgImagen.setImage(imagen);
-        Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
+        Conexion.procedure = Conexion.connection.prepareCall("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
         while (Conexion.result.next()){
             lstRestaurante.getItems().add(Conexion.result.getString(1));

@@ -16,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -39,11 +38,11 @@ public class BuscarController implements Initializable {
     @FXML
     private Label lblNombre;
     @FXML
-    private Label lblRestaurante;
-    @FXML
     private Button btnMostrarInfo;
     @FXML
     private Label lblCategoria;
+    @FXML
+    private ListView<?> lstRestaurante;
 
     /**
      * Initializes the controller class.

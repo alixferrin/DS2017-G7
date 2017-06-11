@@ -38,8 +38,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="313.0" layoutY="393.0" prefHeight="98.0" prefWidth="289.0" />
-      <TextArea fx:id="txtIngredientes" editable="false" layoutX="313.0" layoutY="268.0" prefHeight="88.0" prefWidth="289.0" />
+      <TextArea fx:id="txtDescripcion" editable="false" layoutX="313.0" layoutY="393.0" prefHeight="98.0" prefWidth="289.0" wrapText="true" />
+      <TextArea fx:id="txtIngredientes" editable="false" layoutX="313.0" layoutY="268.0" prefHeight="88.0" prefWidth="289.0" wrapText="true" />
       <TextField fx:id="txtNombre" editable="false" layoutX="406.0" layoutY="49.0" prefHeight="25.0" prefWidth="193.0" />
       <TextField fx:id="txtCategoria" editable="false" layoutX="406.0" layoutY="84.0" prefHeight="25.0" prefWidth="193.0" />
       <Label layoutX="619.0" layoutY="29.0" text="Imagen:">

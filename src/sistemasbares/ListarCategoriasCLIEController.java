@@ -53,7 +53,6 @@ public class ListarCategoriasCLIEController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtDescripcion.setWrapText(true);
         try{
             Conexion.procedure = Conexion.connection.prepareCall("{call listCategorias()}");
             Conexion.result = Conexion.procedure.executeQuery();
@@ -79,6 +78,7 @@ public class ListarCategoriasCLIEController implements Initializable {
         lblNombre.setText(Conexion.result.getString(1));
         lblCateogoria.setText(Conexion.result.getString(3));
         txtDescripcion.setText(Conexion.result.getString(2));
+        txtIngredientes.setText(Conexion.result.getString(5));
         Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
         imgImagen.setImage(imagen);
         Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");

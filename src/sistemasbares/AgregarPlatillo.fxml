@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="sistemasbares.AgregarPlatilloController">
+<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.AgregarPlatilloController">
    <children>
       <Label layoutX="125.0" layoutY="74.0" text="Nombre:">
          <font>
@@ -38,18 +37,24 @@
       </Label>
       <TextField fx:id="txtNombre" layoutX="190.0" layoutY="71.0" prefHeight="25.0" prefWidth="285.0" />
       <TextField fx:id="txtCategoria" layoutX="190.0" layoutY="106.0" prefHeight="25.0" prefWidth="285.0" />
-      <TextArea fx:id="txtDescripcion" layoutX="189.0" layoutY="212.0" prefHeight="139.0" prefWidth="285.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="189.0" layoutY="212.0" prefHeight="93.0" prefWidth="285.0" />
       <ComboBox fx:id="cmbServido" layoutX="190.0" layoutY="141.0" prefHeight="25.0" prefWidth="285.0" />
       <ComboBox fx:id="cmbTipo" layoutX="189.0" layoutY="176.0" prefHeight="25.0" prefWidth="285.0" />
-      <Button fx:id="btnGuardar" layoutX="405.0" layoutY="361.0" mnemonicParsing="false" text="Guardar">
+      <Button fx:id="btnGuardar" layoutX="405.0" layoutY="463.0" mnemonicParsing="false" text="Guardar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpiar" layoutX="331.0" layoutY="361.0" mnemonicParsing="false" text="Limpiar">
+      <Button fx:id="btnLimpiar" layoutX="332.0" layoutY="463.0" mnemonicParsing="false" text="Limpiar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <TextArea layoutX="190.0" layoutY="315.0" prefHeight="93.0" prefWidth="285.0" />
+      <Label layoutX="104.0" layoutY="315.0" text="Ingredientes:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

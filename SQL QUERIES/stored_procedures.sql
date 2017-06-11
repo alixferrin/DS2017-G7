@@ -70,7 +70,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getInfoPla` (IN nom VARCHAR(50))
 BEGIN
-	SELECT nombre_pla, descrp_pla, categoria, imagen FROM platillo_tb WHERE nombre_pla = nom;
+	SELECT nombre_pla, descrp_pla, categoria, imagen, ingrediente_pla FROM platillo_tb WHERE nombre_pla = nom;
 END $$
 DELIMITER
 
@@ -132,9 +132,26 @@ BEGIN
 END $$
 DELIMITER ;
 
+/*Asistente*/
 DELIMITER $$
 CREATE PROCEDURE `listCatASIS`(IN asis VARCHAR(50))
 BEGIN
 	SELECT DISTINCT categoria FROM platillo_tb AS p JOIN menu_tb AS m ON p.id_platillo = m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante = m.id_restaurante WHERE asist_rest = asis;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `listPlatillos` (IN asis VARCHAR(50))
+BEGIN
+	SELECT DISTINCT nombre_pla FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE asist_rest = asis;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getRestASIS`(IN asis VARCHAR(50), IN nom VARCHAR(50))
+BEGIN
+	SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = nom AND asist_rest = asis;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE getInfoPla;

@@ -43,7 +43,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="321.0" layoutY="388.0" prefHeight="96.0" prefWidth="244.0" />
+      <TextArea fx:id="txtDescripcion" editable="false" layoutX="321.0" layoutY="388.0" prefHeight="96.0" prefWidth="244.0" wrapText="true" />
       <ImageView fx:id="imgImagen" fitHeight="396.0" fitWidth="341.0" layoutX="596.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblNombre" layoutX="391.0" layoutY="51.0">
          <font>
@@ -55,7 +55,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtIngredientes" editable="false" layoutX="321.0" layoutY="260.0" prefHeight="88.0" prefWidth="244.0" />
+      <TextArea fx:id="txtIngredientes" editable="false" layoutX="321.0" layoutY="260.0" prefHeight="88.0" prefWidth="244.0" wrapText="true" />
       <Button fx:id="btnMostrarInfo" layoutX="146.0" layoutY="493.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
          <font>
             <Font size="14.0" />
