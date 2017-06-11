@@ -75,6 +75,7 @@ public class ListarCategoriasASISController implements Initializable {
     private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
         btnModificar.setDisable(false);
         this.limpiar();
+        this.deshabilitar();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
         Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
@@ -123,5 +124,15 @@ public class ListarCategoriasASISController implements Initializable {
         txtIngredientes.clear();
         lstRestaurante.getItems().clear();
         imgImagen.setImage(null);
+    }
+    
+    private void deshabilitar(){
+        txtNombre.setEditable(false);
+        txtCategoria.setEditable(false);
+        txtIngredientes.setEditable(false);
+        txtDescripcion.setEditable(false);
+        btnLimpiar.setDisable(true);
+        btnGuardar.setDisable(true);
+        btnCargarIMG.setDisable(true);
     }
 }
