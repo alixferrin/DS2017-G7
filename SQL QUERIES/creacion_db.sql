@@ -17,10 +17,10 @@ CREATE TABLE `platillo_tb`(
   `id_platillo` varchar(10) NOT NULL,
   `nombre_pla` varchar(50) NOT NULL,
   `descrp_pla` varchar(250) NOT NULL,
-  `categoria` varchar(50) NOT NULL,
+  `id_categoria` varchar(50) NOT NULL,
   `temperatura_pla` int(4) NOT NULL,
   `imagen` varchar(50) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
+  `id_tipo` varchar(50) NOT NULL,
   `servido` varchar(10) NOT NULL,	
   PRIMARY KEY (`id_platillo`)
   );
