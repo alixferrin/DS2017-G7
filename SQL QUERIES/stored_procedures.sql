@@ -102,7 +102,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getRest` (IN nom VARCHAR(50))
 BEGIN
-	SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = 'ENCEBOLLADO';
+	SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = nom;
 END $$
 DELIMITER ;
 
@@ -126,9 +126,15 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50))
 BEGIN
-	SELECT level
+	SELECT level, id_usuario
     from usuario_tb
     where nickname = nick and pass = pass; 
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `listCatASIS`(IN asis VARCHAR(50))
+BEGIN
+	SELECT DISTINCT categoria FROM platillo_tb AS p JOIN menu_tb AS m ON p.id_platillo = m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante = m.id_restaurante WHERE asist_rest = asis;
+END $$
+DELIMITER ;

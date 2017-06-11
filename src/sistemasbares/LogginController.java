@@ -69,9 +69,10 @@ public class LogginController implements Initializable {
                 System.out.println(level);
                 if (level.equals("1"))
                     this.showMenu(event, "Cliente.fxml");
-                else
+                else{
+                    Conexion.asisRest = Conexion.result.getString(2);
                     this.showMenu(event, "Asistente.fxml");
-                
+                }
             }
         }catch (Exception e){
             e.printStackTrace();

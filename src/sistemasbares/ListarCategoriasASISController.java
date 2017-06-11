@@ -5,7 +5,10 @@
  */
 package sistemasbares;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -32,8 +36,6 @@ public class ListarCategoriasASISController implements Initializable {
     @FXML
     private TextField txtNombre;
     @FXML
-    private TextField txtRestaurante;
-    @FXML
     private TextField txtCategoria;
     @FXML
     private ImageView imgImagen;
@@ -49,18 +51,70 @@ public class ListarCategoriasASISController implements Initializable {
     private ComboBox cmbCategorias;
     @FXML
     private Button btnMostrarInfo;
+    @FXML
+    private ListView lstRestaurante;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        txtDescripcion.setWrapText(true);
+        try{
+            Conexion.procedure = Conexion.connection.prepareCall("{call listCatASIS('" + Conexion.asisRest + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            while (Conexion.result.next()){
+                cmbCategorias.getItems().add(Conexion.result.getString(1));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }    
 
     @FXML
-    private void mostrarInfo(ActionEvent event) {
-        
+    private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
+        btnModificar.setDisable(false);
+        txtNombre.setText("");
+        txtCategoria.setText("");
+        txtDescripcion.clear();
+        txtIngredientes.clear();
+        String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
+        Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        Conexion.result.next();
+        txtNombre.setText(Conexion.result.getString(1));
+        txtCategoria.setText(Conexion.result.getString(3));
+        txtDescripcion.setText(Conexion.result.getString(2));
+        Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
+        imgImagen.setImage(imagen);
+        Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        while (Conexion.result.next()){
+            lstRestaurante.getItems().add(Conexion.result.getString(1));
+        }
+    }
+
+    @FXML
+    private void cargarListView(ActionEvent event) throws SQLException {
+        btnMostrarInfo.setDisable(false);
+        lstPlatillos.getItems().clear();
+        String categoria = (String) cmbCategorias.getValue();
+        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatillos('" + categoria + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        while (Conexion.result.next()){
+            lstPlatillos.getItems().add(Conexion.result.getString(1));
+        }
+    }
+
+    @FXML
+    private void modificar(ActionEvent event) {
+        txtNombre.setEditable(true);
+        txtCategoria.setEditable(true);
+        txtIngredientes.setEditable(true);
+        txtDescripcion.setEditable(true);
+        btnGuardar.setDisable(false);
+        btnLimpiar.setDisable(false);
+        btnCargarIMG.setDisable(false);
     }
     
 }

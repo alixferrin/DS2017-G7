@@ -19,4 +19,5 @@ public class Conexion {
     public static Statement statement = null;
     public static ResultSet result = null;
     public static CallableStatement procedure= null;
+    public static String asisRest = null;
 }
