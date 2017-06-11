@@ -45,11 +45,11 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `buscarPlatillo` (IN nombre varchar(50), IN descrp varchar(250))
+CREATE PROCEDURE `buscarPlatillo` (IN busqueda varchar(250))
 BEGIN
-	SELECT *
-    from menu_tb 
-    where nombre_pla like concat('%', nombre, '%') or descrp_pla like concat('%', descrp, '%');
+	SELECT nombre_pla
+    from platillo_tb 
+    where nombre_pla like concat('%', busqueda, '%') or descrp_pla like concat('%', busqueda, '%');
 END $$
 DELIMITER ;
 
@@ -154,4 +154,9 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE getInfoPla;
+DELIMITER $$
+CREATE PROCEDURE `mostrarPlatilloASIS`(IN asis VARCHAR(50), IN cat VARCHAR(50))
+BEGIN
+	SELECT DISTINCT nombre_pla FROM platillo_tb AS p JOIN menu_tb AS m ON p.id_platillo = m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante = m.id_restaurante WHERE categoria = cat AND asist_rest = asis;
+END $$
+DELIMITER ;

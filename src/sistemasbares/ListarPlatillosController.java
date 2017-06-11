@@ -72,11 +72,7 @@ public class ListarPlatillosController implements Initializable {
     @FXML
     private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
         btnModificar.setDisable(false);
-        txtNombre.setText("");
-        txtCategoria.setText("");
-        txtDescripcion.clear();
-        txtIngredientes.clear();
-        lstRestaurante.getItems().clear();
+        this.limpiar();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
         Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
@@ -105,4 +101,13 @@ public class ListarPlatillosController implements Initializable {
         btnCargarIMG.setDisable(false);
     }
     
+    @FXML
+    private void limpiar(){
+        txtNombre.setText("");
+        txtCategoria.setText("");
+        txtDescripcion.clear();
+        txtIngredientes.clear();
+        lstRestaurante.getItems().clear();
+        imgImagen.setImage(null);
+    }
 }

@@ -74,11 +74,7 @@ public class ListarCategoriasASISController implements Initializable {
     @FXML
     private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
         btnModificar.setDisable(false);
-        txtNombre.setText("");
-        txtCategoria.setText("");
-        txtDescripcion.clear();
-        txtIngredientes.clear();
-        lstRestaurante.getItems().clear();
+        this.limpiar();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
         Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
@@ -101,7 +97,7 @@ public class ListarCategoriasASISController implements Initializable {
         btnMostrarInfo.setDisable(false);
         lstPlatillos.getItems().clear();
         String categoria = (String) cmbCategorias.getValue();
-        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatillos('" + categoria + "')}");
+        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatilloASIS('" + Conexion.asisRest + "','" + categoria + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
         while (Conexion.result.next()){
             lstPlatillos.getItems().add(Conexion.result.getString(1));
@@ -119,4 +115,13 @@ public class ListarCategoriasASISController implements Initializable {
         btnCargarIMG.setDisable(false);
     }
     
+    @FXML
+    private void limpiar(){
+        txtNombre.setText("");
+        txtCategoria.setText("");
+        txtDescripcion.clear();
+        txtIngredientes.clear();
+        lstRestaurante.getItems().clear();
+        imgImagen.setImage(null);
+    }
 }

@@ -5,16 +5,22 @@
  */
 package sistemasbares;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -28,7 +34,7 @@ public class BuscarController implements Initializable {
     @FXML
     private Button btnBuscar;
     @FXML
-    private ListView<?> lstPlatillos;
+    private ListView lstPlatillos;
     @FXML
     private TextArea txtDescripcion;
     @FXML
@@ -42,7 +48,7 @@ public class BuscarController implements Initializable {
     @FXML
     private Label lblCategoria;
     @FXML
-    private ListView<?> lstRestaurante;
+    private ListView lstRestaurante;
 
     /**
      * Initializes the controller class.
@@ -53,13 +59,51 @@ public class BuscarController implements Initializable {
     }    
 
     @FXML
-    private void buscar(ActionEvent event) {
-        
+    private void buscar(ActionEvent event) throws SQLException {
+        this.limpiar();
+        lstPlatillos.getItems().clear();
+        String busqueda = txtBusqueda.getText().toUpperCase();
+        Conexion.procedure = Conexion.connection.prepareCall("{call buscarPlatillo('" + busqueda + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        if (!Conexion.result.next()){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Resultados de la búsqueda");
+            alert.setHeaderText(null);
+            alert.setContentText("No se encontraron platillos con los datos ingresados");
+            alert.showAndWait();
+        }else{
+            Conexion.result.beforeFirst();
+            while (Conexion.result.next())
+                lstPlatillos.getItems().add(Conexion.result.getString(1));
+        }
     }
 
     @FXML
-    private void showMostrarInfo(ActionEvent event) {
-        
+    private void showMostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
+        this.limpiar();
+        String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
+        Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        Conexion.result.next();
+        lblNombre.setText(Conexion.result.getString(1));
+        lblCategoria.setText(Conexion.result.getString(3));
+        txtDescripcion.setText(Conexion.result.getString(2));
+        txtIngredientes.setText(Conexion.result.getString(5));
+        Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
+        imgImagen.setImage(imagen);
+        Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        while (Conexion.result.next()){
+            lstRestaurante.getItems().add(Conexion.result.getString(1));
+        }
     }
     
+    private void limpiar(){
+        lblNombre.setText("");
+        lblCategoria.setText("");
+        txtDescripcion.clear();
+        lstRestaurante.getItems().clear();
+        txtIngredientes.clear();
+        imgImagen.setImage(null);
+    }
 }

@@ -66,11 +66,7 @@ public class ListarCategoriasCLIEController implements Initializable {
 
     @FXML
     private void mostrarInformacion(ActionEvent event) throws SQLException, FileNotFoundException {
-        lblNombre.setText("");
-        lblCateogoria.setText("");
-        txtDescripcion.clear();
-        lstRestaurante.getItems().clear();
-        txtIngredientes.clear();
+        this.limpiar();
         String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
         Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
@@ -97,6 +93,15 @@ public class ListarCategoriasCLIEController implements Initializable {
         while (Conexion.result.next()){
             lstPlatillos.getItems().add(Conexion.result.getString(1));
         }
+    }
+    
+    private void limpiar(){
+        lblNombre.setText("");
+        lblCateogoria.setText("");
+        txtDescripcion.clear();
+        lstRestaurante.getItems().clear();
+        txtIngredientes.clear();
+        imgImagen.setImage(null);
     }
     
 }

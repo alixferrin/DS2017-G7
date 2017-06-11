@@ -24,45 +24,40 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="336.0" layoutY="158.0" text="Restaurante:">
+      <Label layoutX="336.0" layoutY="184.0" text="Restaurante:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="336.0" layoutY="193.0" text="Categoria:">
+      <Label layoutX="336.0" layoutY="154.0" text="Categoria:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDescripcion" disable="true" layoutX="336.0" layoutY="385.0" prefHeight="200.0" prefWidth="289.0" />
-      <TextArea fx:id="txtIngredientes" disable="true" layoutX="336.0" layoutY="258.0" prefHeight="88.0" prefWidth="289.0" />
+      <TextArea fx:id="txtDescripcion" editable="false" layoutX="336.0" layoutY="467.0" prefHeight="115.0" prefWidth="289.0" wrapText="true" />
+      <TextArea fx:id="txtIngredientes" editable="false" layoutX="336.0" layoutY="334.0" prefHeight="88.0" prefWidth="289.0" wrapText="true" />
       <Label layoutX="642.0" layoutY="120.0" text="Imagen:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <ImageView fx:id="imgImagen" fitHeight="431.0" fitWidth="341.0" layoutX="642.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblNombre" layoutX="431.0" layoutY="123.0">
+      <Label fx:id="lblNombre" layoutX="417.0" layoutY="123.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblRestaurante" layoutX="431.0" layoutY="158.0">
+      <Label fx:id="lblCategoria" layoutX="417.0" layoutY="154.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblCategoria" layoutX="431.0" layoutY="193.0">
+      <Label layoutX="336.0" layoutY="304.0" text="Ingredientes:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="336.0" layoutY="233.0" text="Ingredientes:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="336.0" layoutY="361.0" text="Descripción:">
+      <Label layoutX="337.0" layoutY="441.0" text="Descripción:">
          <font>
             <Font size="14.0" />
          </font>
@@ -72,5 +67,6 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <ListView fx:id="lstRestaurante" layoutX="336.0" layoutY="208.0" prefHeight="88.0" prefWidth="289.0" />
    </children>
 </AnchorPane>
