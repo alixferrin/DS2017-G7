@@ -82,7 +82,7 @@ public class ListarPlatillosController implements Initializable {
         txtCategoria.setText(Conexion.result.getString(3));
         txtDescripcion.setText(Conexion.result.getString(2));
         txtIngredientes.setText(Conexion.result.getString(5));
-        Image imagen = new Image(new FileInputStream(Conexion.result.getString(4)));
+        Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
         imgImagen.setImage(imagen);
         Conexion.procedure = Conexion.connection.prepareCall("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
         Conexion.result = Conexion.procedure.executeQuery();
