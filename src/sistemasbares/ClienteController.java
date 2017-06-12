@@ -56,8 +56,12 @@ public class ClienteController implements Initializable {
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) throws IOException {
-        System.out.println("falta por implementar :v");
+    private void cerrarSesion(ActionEvent event) {
+        try{
+            Main.logout();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML

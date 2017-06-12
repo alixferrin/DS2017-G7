@@ -75,7 +75,11 @@ public class AsistenteController implements Initializable {
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-        System.out.println("Falta de implementar :v");
+        try{
+            Main.logout();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML

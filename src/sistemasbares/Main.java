@@ -16,16 +16,21 @@ import javafx.stage.Stage;
  * @author HOME
  */
 public class Main extends Application {
+    private static Parent root;
+    private static Scene scene;
+    private static Stage stage;
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Loggin.fxml"));
+        Main.stage = stage;
         
-        Scene scene = new Scene(root);
+        root = FXMLLoader.load(getClass().getResource("Loggin.fxml"));
         
-        stage.setScene(scene);
-        stage.setTitle("Ingreso");
-        stage.show();
+        scene = new Scene(root);
+        
+        Main.stage.setScene(scene);
+        Main.stage.setTitle("Ingreso");
+        Main.stage.show();
     }
 
     /**
@@ -35,4 +40,14 @@ public class Main extends Application {
         launch(args);
     }
     
+    public static void logout() throws Exception{
+        root = FXMLLoader.load(Main.class.getResource("Loggin.fxml"));
+        
+        scene = new Scene(root);
+        
+        Main.stage.setScene(scene);
+        Main.stage.setTitle("Ingreso");
+        Main.stage.centerOnScreen();
+        Main.stage.show();
+    }
 }

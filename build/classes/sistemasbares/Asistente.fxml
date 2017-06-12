@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="745.0" prefWidth="1118.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.AsistenteController">
+<AnchorPane id="AnchorPane" prefHeight="707.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.AsistenteController">
    <children>
-      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="25.0" prefWidth="1118.0">
+      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="25.0" prefWidth="1067.0">
          <menus>
             <Menu fx:id="menuAgregarPlatillo" mnemonicParsing="false" text="Agregar ...">
                <items>
@@ -31,6 +32,9 @@
                </items></Menu>
          </menus>
       </MenuBar>
-      <StackPane fx:id="loaderPane" layoutY="26.0" prefHeight="719.0" prefWidth="1118.0" />
+      <StackPane fx:id="loaderPane" layoutY="26.0" prefHeight="681.0" prefWidth="1067.0">
+         <padding>
+            <Insets left="30.0" top="50.0" />
+         </padding></StackPane>
    </children>
 </AnchorPane>

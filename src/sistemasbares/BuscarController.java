@@ -79,22 +79,36 @@ public class BuscarController implements Initializable {
     }
 
     @FXML
-    private void showMostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
-        this.limpiar();
-        String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
-        Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        Conexion.result.next();
-        lblNombre.setText(Conexion.result.getString(1));
-        lblCategoria.setText(Conexion.result.getString(3));
-        txtDescripcion.setText(Conexion.result.getString(2));
-        txtIngredientes.setText(Conexion.result.getString(5));
-        Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
-        imgImagen.setImage(imagen);
-        Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        while (Conexion.result.next()){
-            lstRestaurante.getItems().add(Conexion.result.getString(1));
+    private void showMostrarInfo(ActionEvent event) {
+        try{
+            String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
+            this.limpiar();
+            Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            while (Conexion.result.next()){
+                lstRestaurante.getItems().add(Conexion.result.getString(1));
+            }
+            Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            Conexion.result.next();
+            lblNombre.setText(Conexion.result.getString(1));
+            lblCategoria.setText(Conexion.result.getString(3));
+            txtDescripcion.setText(Conexion.result.getString(2));
+            txtIngredientes.setText(Conexion.result.getString(5));
+            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
+            imgImagen.setImage(imagen);
+        }catch (SQLException sql){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Selección de platillos");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, seleccione un platillo de la lista.");
+            alert.showAndWait();
+        }catch (FileNotFoundException ef){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Mostrar Información - Imagen");
+            alert.setHeaderText(null);
+            alert.setContentText("No se puede mostrar imagen del platillo. La imagen no se encuentra en el sistema");
+            alert.showAndWait();
         }
     }
     

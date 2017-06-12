@@ -14,7 +14,7 @@ CREATE TABLE `usuario_tb`(
 
   
 CREATE TABLE `platillo_tb`(
-  `id_platillo` varchar(10) NOT NULL,
+  `id_platillo`int NOT NULL AUTO_INCREMENT,
   `nombre_pla` varchar(50) NOT NULL,
   `descrp_pla` varchar(250) NOT NULL,
   `ingrediente_pla` varchar(250) NOT NULL,
@@ -26,6 +26,7 @@ CREATE TABLE `platillo_tb`(
   PRIMARY KEY (`id_platillo`)
   );
   
+
   CREATE TABLE `restaurante_tb`(
   `id_restaurante` varchar(10) NOT NULL,
   `nombre_rest` varchar(50) NOT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE `platillo_tb`(
   
 CREATE TABLE `menu_tb`(
   `id_restaurante` varchar(10) NOT NULL,
-  `id_platillo` varchar(10) NOT NULL,
+  `id_platillo`int,
   PRIMARY KEY (`id_restaurante`,`id_platillo`),
   CONSTRAINT `menu_FK1` FOREIGN KEY (`id_platillo`) REFERENCES `platillo_tb` (`id_platillo`),
   CONSTRAINT `menu_FK2` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurante_tb` (`id_restaurante`)

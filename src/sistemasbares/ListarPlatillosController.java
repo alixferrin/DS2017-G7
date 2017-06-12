@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -83,25 +84,37 @@ public class ListarPlatillosController implements Initializable {
 
     @FXML
     private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
-        btnModificar.setDisable(false);
-        this.limpiar();
-        this.deshabilitar();
-        String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
-        Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        Conexion.result.next();
-        this.id_plato = Conexion.result.getString(1);
-        System.out.println(this.id_plato);
-        txtNombre.setText(Conexion.result.getString(2));
-        txtCategoria.setText(Conexion.result.getString(4));
-        txtDescripcion.setText(Conexion.result.getString(3));
-        txtIngredientes.setText(Conexion.result.getString(6));
-        Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(5)));
-        imgImagen.setImage(imagen);
-        Conexion.procedure = Conexion.connection.prepareCall("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        while (Conexion.result.next()){
-            lstRestaurante.getItems().add(Conexion.result.getString(1));
+        try{
+            String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
+            btnModificar.setDisable(false);
+            this.limpiar();
+            this.deshabilitar();
+            Conexion.procedure = Conexion.connection.prepareCall("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            while (Conexion.result.next()){
+                lstRestaurante.getItems().add(Conexion.result.getString(1));
+            }
+            Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            Conexion.result.next();
+            txtNombre.setText(Conexion.result.getString(1));
+            txtCategoria.setText(Conexion.result.getString(3));
+            txtDescripcion.setText(Conexion.result.getString(2));
+            txtIngredientes.setText(Conexion.result.getString(5));
+            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
+            imgImagen.setImage(imagen);
+        }catch (SQLException sql){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Selección de platillos");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, seleccione un platillo de la lista.");
+            alert.showAndWait();
+        }catch (FileNotFoundException ef){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Mostrar Información - Imagen");
+            alert.setHeaderText(null);
+            alert.setContentText("No se puede mostrar imagen del platillo. La imagen no se encuentra en el sistema");
+            alert.showAndWait();
         }
     }
 
