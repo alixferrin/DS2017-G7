@@ -82,7 +82,7 @@ public class LogginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String user = "root";
-        String pwrd = "saverio.1995";
+        String pwrd = "";
         try{
             //Esta clase sirve para generar la conexion en SQL
             Conexion.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, pwrd);

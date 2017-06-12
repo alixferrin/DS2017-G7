@@ -36,10 +36,10 @@ END $$
 DELIMITER 
 
 DELIMITER $$
-CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(50), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10))
+CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(50), IN newCategoria varchar(50), IN newImage varchar(50), IN  newIngre varchar(250))
 BEGIN
 	update platillo_tb
-    set nombre_pla = newNombre, descrp_pla = newDescrip, categoria = newCategoria, temperatura_pla = newTemp, imagen = newImage, tipo = newTipo, servido = newServido
+    set nombre_pla = newNombre, descrp_pla = newDescrip, categoria = newCategoria, imagen = newImage, ingrediente_pla = newIngre
     where id_platillo = ID;
 END $$
 DELIMITER ;
@@ -70,7 +70,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getInfoPla` (IN nom VARCHAR(50))
 BEGIN
-	SELECT nombre_pla, descrp_pla, categoria, imagen, ingrediente_pla FROM platillo_tb WHERE nombre_pla = nom;
+	SELECT id_platillo, nombre_pla, descrp_pla, categoria, imagen, ingrediente_pla FROM platillo_tb WHERE nombre_pla = nom;
 END $$
 DELIMITER
 
