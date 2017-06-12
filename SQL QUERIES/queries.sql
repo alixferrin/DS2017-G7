@@ -80,5 +80,3 @@ INSERT INTO menu_tb VALUE ('RST08', 12);
 INSERT INTO menu_tb VALUE ('RST09', 4);
 INSERT INTO menu_tb VALUE ('RST09', 5);
 INSERT INTO menu_tb VALUE ('RST09', 8);
-
-SELECT * FROM menu_tb;

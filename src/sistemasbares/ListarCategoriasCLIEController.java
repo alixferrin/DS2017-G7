@@ -78,11 +78,11 @@ public class ListarCategoriasCLIEController implements Initializable {
             Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
             Conexion.result = Conexion.procedure.executeQuery();
             Conexion.result.next();
-            lblNombre.setText(Conexion.result.getString(1));
-            lblCateogoria.setText(Conexion.result.getString(3));
-            txtDescripcion.setText(Conexion.result.getString(2));
-            txtIngredientes.setText(Conexion.result.getString(5));
-            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
+            lblNombre.setText(Conexion.result.getString(2));
+            lblCateogoria.setText(Conexion.result.getString(4));
+            txtDescripcion.setText(Conexion.result.getString(3));
+            txtIngredientes.setText(Conexion.result.getString(6));
+            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(5)));
             imgImagen.setImage(imagen);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);

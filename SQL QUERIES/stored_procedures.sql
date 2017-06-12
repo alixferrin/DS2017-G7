@@ -36,7 +36,7 @@ END $$
 DELIMITER 
 
 DELIMITER $$
-CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(50), IN newCategoria varchar(50), IN newImage varchar(50), IN  newIngre varchar(250))
+CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(150), IN newCategoria varchar(50), IN newImage varchar(50), IN  newIngre varchar(250))
 BEGIN
 	update platillo_tb
     set nombre_pla = newNombre, descrp_pla = newDescrip, categoria = newCategoria, imagen = newImage, ingrediente_pla = newIngre

@@ -5,10 +5,12 @@
  */
 package sistemasbares;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
@@ -18,6 +20,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -65,9 +69,7 @@ public class ListarPlatillosController implements Initializable {
     private String[] datosImagen = {"",""};
     private String id_plato = "";
     File foto;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtDescripcion.setWrapText(true);
@@ -97,11 +99,14 @@ public class ListarPlatillosController implements Initializable {
             Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
             Conexion.result = Conexion.procedure.executeQuery();
             Conexion.result.next();
-            txtNombre.setText(Conexion.result.getString(1));
-            txtCategoria.setText(Conexion.result.getString(3));
-            txtDescripcion.setText(Conexion.result.getString(2));
-            txtIngredientes.setText(Conexion.result.getString(5));
-            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(4)));
+            this.id_plato = Conexion.result.getString(1);
+            txtNombre.setText(Conexion.result.getString(2));
+            txtCategoria.setText(Conexion.result.getString(4));
+            txtDescripcion.setText(Conexion.result.getString(3));
+            txtIngredientes.setText(Conexion.result.getString(6));
+            String img = Conexion.result.getString(5);
+            this.datosImagen[0] = img;
+            Image imagen = new Image(new FileInputStream("imgs\\" + img));
             imgImagen.setImage(imagen);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -150,7 +155,7 @@ public class ListarPlatillosController implements Initializable {
     }
     
     @FXML
-    private void guardarFoto(ActionEvent event){
+    private void cargarFoto(ActionEvent event){
     
         //instanciando ventana emergente
         FileChooser fileChooser = new FileChooser();
@@ -162,39 +167,42 @@ public class ListarPlatillosController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
         
         String name = file.getName();
-        System.out.println(name);
         String rutaImagen = file.getAbsolutePath();
-        System.out.print(rutaImagen);
+       
+        try{
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image img = SwingFXUtils.toFXImage(bufferedImage, null);
+            imgImagen.setImage(img);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
         
         this.datosImagen[0] = name;
         this.datosImagen[1] = rutaImagen;
-        
         this.foto = file;
         
     }
     
     @FXML
     private void modificarPlatillo(ActionEvent event){
-         
         try{
+            Conexion.procedure = Conexion.connection.prepareCall("{call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText() + "','" + this.txtDescripcion.getText() + "','" + this.txtCategoria.getText() + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText() +"')}");
+            Conexion.procedure.execute();
             
-            /*Conexion.procedure = Conexion.connection.prepareCall("{Call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText()
-                                                                    + "','" + this.txtDescripcion.getText() + "','" + this.txtCategoria.getText() 
-                                                                + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText() +"')}");
-            Conexion.result = Conexion.procedure.executeQuery();*/
-            Path FROM = Paths.get(this.foto.getAbsolutePath());
-            Path TO = Paths.get("imgs\\" + this.foto.getName());
-            CopyOption[] options = new CopyOption[]{
-                StandardCopyOption.REPLACE_EXISTING,
-                StandardCopyOption.COPY_ATTRIBUTES
-            };
-            Files.copy(FROM, TO, options);
+            if (this.foto != null){
+                Path FROM = Paths.get(this.foto.getAbsolutePath());
+                Path TO = Paths.get("imgs\\" + this.foto.getName());
+                CopyOption[] options = new CopyOption[]{
+                    StandardCopyOption.REPLACE_EXISTING,
+                    StandardCopyOption.COPY_ATTRIBUTES
+                };
+                Files.copy(FROM, TO, options);
+            }
             
-            System.out.println("COPIADO");
-            
-        }catch(Exception e){
+        }catch (SQLException sql){
+            sql.printStackTrace();
+        }catch (IOException e){
             e.printStackTrace();
         }
-        
-    } 
+    }
 }
