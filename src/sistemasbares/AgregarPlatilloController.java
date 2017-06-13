@@ -90,7 +90,7 @@ public class AgregarPlatilloController implements Initializable {
             try{
                 String IDRest = "";
                 String IDPlat = "";
-                Conexion.procedure = Conexion.connection.prepareCall("{call nuevoPlatillo('" + txtNombre.getText() + "','" + txtDescripcion.getText() + "','" + txtIngredientes.getText() + "','" + txtCategoria.getText() + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "')}");
+                Conexion.procedure = Conexion.connection.prepareCall("{call nuevoPlatillo('" + txtNombre.getText().toUpperCase() + "','" + txtDescripcion.getText().toUpperCase() + "','" + txtIngredientes.getText().toUpperCase() + "','" + txtCategoria.getText().toUpperCase() + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "')}");
                 Conexion.procedure.execute();
                 Conexion.procedure = Conexion.connection.prepareCall("{call getIDRest('" + (String)cmbRestaurante.getValue() + "')}");
                 Conexion.result = Conexion.procedure.executeQuery();

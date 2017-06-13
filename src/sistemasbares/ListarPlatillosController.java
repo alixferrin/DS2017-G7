@@ -186,7 +186,7 @@ public class ListarPlatillosController implements Initializable {
     @FXML
     private void modificarPlatillo(ActionEvent event){
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText() + "','" + this.txtDescripcion.getText() + "','" + this.txtCategoria.getText() + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText() +"')}");
+            Conexion.procedure = Conexion.connection.prepareCall("{call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText().toUpperCase() + "','" + this.txtDescripcion.getText().toUpperCase() + "','" + this.txtCategoria.getText().toUpperCase() + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText().toUpperCase() +"')}");
             Conexion.procedure.execute();
             
             if (this.foto != null){

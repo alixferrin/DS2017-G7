@@ -30,6 +30,7 @@ public class Main extends Application {
         
         Main.stage.setScene(scene);
         Main.stage.setTitle("Ingreso");
+        Main.stage.setResizable(false);
         Main.stage.show();
     }
 
