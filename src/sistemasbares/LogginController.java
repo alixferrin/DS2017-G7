@@ -48,6 +48,7 @@ public class LogginController implements Initializable {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         try{
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlDocument))));
+            stage.setTitle(fxmlDocument.substring(0, fxmlDocument.lastIndexOf(".")));
             stage.centerOnScreen();
         }catch(IOException e){ 
             e.printStackTrace();
