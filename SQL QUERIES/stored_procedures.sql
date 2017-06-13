@@ -29,11 +29,11 @@ DELIMITER ;
 
 /*PARA platillo_tb*/
 DELIMITER $$
-CREATE PROCEDURE `nuevoPlatillo` (IN newID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(50), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10))
+CREATE PROCEDURE `nuevoPlatillo` (IN newNombre varchar(50), IN newDescrip varchar(250), IN newIngre VARCHAR(250), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10))
 BEGIN
-	insert into platillo_tb values (newID, newNombre, newDescrip, newCategoria, newTemp, newImage, newTipo, newServido);
+	insert into platillo_tb values (default, newNombre, newDescrip, newIngre, newCategoria, newTemp, newImage, newTipo, newServido);
 END $$
-DELIMITER 
+DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `modificarPlatillo` (IN ID varchar(10), IN newNombre varchar(50), IN newDescrip varchar(150), IN newCategoria varchar(50), IN newImage varchar(50), IN  newIngre varchar(250))
@@ -74,6 +74,13 @@ BEGIN
 END $$
 DELIMITER
 
+DELIMITER $$
+CREATE PROCEDURE `getPlatID`(IN nom VARCHAR(50))
+BEGIN
+	SELECT id_platillo FROM platillo_tb WHERE nombre_pla = nom;
+END $$
+DELIMITER ;
+
 /*PARA restaurante_tb*/
 DELIMITER $$
 CREATE PROCEDURE `nuevoRestaurante` (IN newID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10))
@@ -103,6 +110,13 @@ DELIMITER $$
 CREATE PROCEDURE `getRest` (IN nom VARCHAR(50))
 BEGIN
 	SELECT nombre_rest FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE nombre_pla = nom;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getIDRest` (IN nom VARCHAR(50))
+BEGIN
+	SELECT id_restaurante FROM restaurante_tb WHERE nombre_rest = nom;
 END $$
 DELIMITER ;
 
@@ -158,5 +172,35 @@ DELIMITER $$
 CREATE PROCEDURE `mostrarPlatilloASIS`(IN asis VARCHAR(50), IN cat VARCHAR(50))
 BEGIN
 	SELECT DISTINCT nombre_pla FROM platillo_tb AS p JOIN menu_tb AS m ON p.id_platillo = m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante = m.id_restaurante WHERE categoria = cat AND asist_rest = asis;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getRestDeASIS`(IN asis VARCHAR(50))
+BEGIN
+	SELECT nombre_rest FROM restaurante_tb WHERE asist_rest = asis;
+END $$
+DELIMITER ;
+
+/*Menu*/
+DELIMITER $$
+CREATE PROCEDURE `insertMenu`(IN id_pla VARCHAR(50), IN id_rest VARCHAR(50))
+BEGIN
+	INSERT INTO menu_tb VALUE(id_rest, id_pla);
+END $$
+DELIMITER ;
+
+/*General*/
+DELIMITER $$
+CREATE PROCEDURE `getTipos`()
+BEGIN
+	SELECT DISTINCT tipo FROM platillo_tb;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getServido`()
+BEGIN
+	SELECT DISTINCT servido FROM platillo_tb;
 END $$
 DELIMITER ;

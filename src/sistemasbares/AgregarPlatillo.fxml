@@ -5,10 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.AgregarPlatilloController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.AgregarPlatilloController">
    <children>
       <Label layoutX="125.0" layoutY="74.0" text="Nombre:">
          <font>
@@ -20,7 +21,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="104.0" layoutY="212.0" text="Descripción:">
+      <Label layoutX="103.0" layoutY="246.0" text="Descripción:">
          <font>
             <Font size="14.0" />
          </font>
@@ -30,31 +31,54 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="149.0" layoutY="180.0" text="Tipo:">
+      <Label layoutX="245.0" layoutY="179.0" text="Tipo:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="txtNombre" layoutX="190.0" layoutY="71.0" prefHeight="25.0" prefWidth="285.0" />
       <TextField fx:id="txtCategoria" layoutX="190.0" layoutY="106.0" prefHeight="25.0" prefWidth="285.0" />
-      <TextArea fx:id="txtDescripcion" layoutX="189.0" layoutY="212.0" prefHeight="93.0" prefWidth="285.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="190.0" layoutY="246.0" prefHeight="93.0" prefWidth="285.0" wrapText="true" />
       <ComboBox fx:id="cmbServido" layoutX="190.0" layoutY="141.0" prefHeight="25.0" prefWidth="285.0" />
-      <ComboBox fx:id="cmbTipo" layoutX="189.0" layoutY="176.0" prefHeight="25.0" prefWidth="285.0" />
-      <Button fx:id="btnGuardar" layoutX="405.0" layoutY="463.0" mnemonicParsing="false" text="Guardar">
+      <ComboBox fx:id="cmbTipo" layoutX="284.0" layoutY="176.0" prefHeight="25.0" prefWidth="190.0" />
+      <Button fx:id="btnGuardar" layoutX="405.0" layoutY="450.0" mnemonicParsing="false" onAction="#guardarPlatillo" text="Guardar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnLimpiar" layoutX="332.0" layoutY="463.0" mnemonicParsing="false" text="Limpiar">
+      <Button fx:id="btnLimpiar" layoutX="332.0" layoutY="450.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea layoutX="190.0" layoutY="315.0" prefHeight="93.0" prefWidth="285.0" />
-      <Label layoutX="104.0" layoutY="315.0" text="Ingredientes:">
+      <TextArea fx:id="txtIngredientes" layoutX="191.0" layoutY="349.0" prefHeight="93.0" prefWidth="285.0" wrapText="true" />
+      <Label layoutX="103.0" layoutY="349.0" text="Ingredientes:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="488.0" layoutY="48.0" text="Imagen:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgImagen" fitHeight="372.0" fitWidth="331.0" layoutX="488.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="cargarImagen" layoutX="707.0" layoutY="450.0" mnemonicParsing="false" onAction="#cargarImagen" text="Cargar Imagen">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="98.0" layoutY="180.0" text="Temperatura:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTemp" layoutX="189.0" layoutY="177.0" prefHeight="25.0" prefWidth="50.0" />
+      <Label layoutX="103.0" layoutY="214.0" text="Restaurante:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbRestaurante" layoutX="191.0" layoutY="212.0" prefHeight="25.0" prefWidth="285.0" />
    </children>
 </AnchorPane>
