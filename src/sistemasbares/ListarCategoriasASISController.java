@@ -99,11 +99,14 @@ public class ListarCategoriasASISController implements Initializable {
             Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
             Conexion.result = Conexion.procedure.executeQuery();
             Conexion.result.next();
+            this.id_plato = Conexion.result.getString(1);
             txtNombre.setText(Conexion.result.getString(2));
             txtCategoria.setText(Conexion.result.getString(4));
             txtDescripcion.setText(Conexion.result.getString(3));
             txtIngredientes.setText(Conexion.result.getString(6));
-            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(5)));
+            String img = Conexion.result.getString(5);
+            this.datosImagen[0] = img;
+            Image imagen = new Image(new FileInputStream("imgs\\" + img));
             imgImagen.setImage(imagen);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);
