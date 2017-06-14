@@ -199,6 +199,16 @@ public class ListarPlatillosController implements Initializable {
                 Files.copy(FROM, TO, options);
             }
             
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Modificar datos del platillo");
+            alert.setHeaderText(null);
+            alert.setContentText("Los datos han sido guardados exitosamente.");
+            alert.showAndWait();
+            
+            this.limpiar();
+            btnModificar.setDisable(true);
+            this.deshabilitar();
+            
         }catch (SQLException sql){
             sql.printStackTrace();
         }catch (IOException e){

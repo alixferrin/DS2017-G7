@@ -100,8 +100,6 @@ public class AgregarPlatilloController implements Initializable {
                 Conexion.result = Conexion.procedure.executeQuery();
                 Conexion.result.next();
                 IDPlat = Conexion.result.getString(1);
-                System.out.println(IDPlat);
-                System.out.println(IDRest);
                 Conexion.procedure = Conexion.connection.prepareCall("{call insertMenu('" + IDPlat + "','" + IDRest + "')}");
                 Conexion.procedure.execute();
                 Path FROM = Paths.get(this.foto.getAbsolutePath());
@@ -111,6 +109,12 @@ public class AgregarPlatilloController implements Initializable {
                     StandardCopyOption.COPY_ATTRIBUTES
                 };
                 Files.copy(FROM, TO, options);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Agregar nuevo platillo");
+                alert.setHeaderText(null);
+                alert.setContentText("Los datos han sido guardados exitosamente.");
+                alert.showAndWait();
+                this.limpiar();
             }catch (SQLException sql){
                 sql.printStackTrace();
             }catch (IOException ex){
@@ -127,12 +131,7 @@ public class AgregarPlatilloController implements Initializable {
 
     @FXML
     private void limpiar(ActionEvent event) {
-        txtNombre.setText("");
-        txtCategoria.setText("");
-        txtDescripcion.setText("");
-        txtIngredientes.setText("");
-        imgImagen.setImage(null);
-        txtTemp.setText("");
+        this.limpiar();
     }
 
     @FXML
@@ -159,6 +158,15 @@ public class AgregarPlatilloController implements Initializable {
         this.datosImagen[0] = name;
         this.datosImagen[1] = rutaImagen;
         this.foto = file;
+    }
+    
+    private void limpiar(){
+        txtNombre.setText("");
+        txtCategoria.setText("");
+        txtDescripcion.setText("");
+        txtIngredientes.setText("");
+        imgImagen.setImage(null);
+        txtTemp.setText("");
     }
     
 }
