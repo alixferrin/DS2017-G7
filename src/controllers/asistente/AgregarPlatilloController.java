@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasbares;
+package controllers.asistente;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import TDAs.Conexion;
 
 /**
  * FXML Controller class

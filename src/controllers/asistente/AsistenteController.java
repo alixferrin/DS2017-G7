@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasbares;
+package controllers.asistente;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +18,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
+import sistemasbares.Main;
 
 /**
  * FXML Controller class

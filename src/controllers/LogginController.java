@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasbares;
+package controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +24,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import TDAs.Conexion;
 
 /**
  *
@@ -42,7 +43,7 @@ public class LogginController implements Initializable {
     @FXML
     private Label lblUsuario;
     @FXML
-    private Label lblContraseña;
+    private Label lblContrasenia;
     
     private void showMenu(ActionEvent event, String fxmlDocument) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

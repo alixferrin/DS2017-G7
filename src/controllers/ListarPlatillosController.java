@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasbares;
+package controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -18,6 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,13 +34,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import TDAs.Conexion;
 
 /**
  * FXML Controller class
  *
  * @author HOME
  */
-public class ListarCategoriasASISController implements Initializable {
+public class ListarPlatillosController implements Initializable {
     @FXML
     private ListView lstPlatillos;
     @FXML
@@ -60,8 +63,6 @@ public class ListarCategoriasASISController implements Initializable {
     @FXML
     private Button btnCargarIMG;
     @FXML
-    private ComboBox cmbCategorias;
-    @FXML
     private Button btnMostrarInfo;
     @FXML
     private ListView lstRestaurante;
@@ -69,23 +70,23 @@ public class ListarCategoriasASISController implements Initializable {
     private String[] datosImagen = {"",""};
     private String id_plato = "";
     File foto;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtDescripcion.setWrapText(true);
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call listCatASIS('" + Conexion.asisRest + "')}");
+            Conexion.procedure = Conexion.connection.prepareCall("{call listPlatillos('" + Conexion.asisRest + "')}");
             Conexion.result = Conexion.procedure.executeQuery();
             while (Conexion.result.next()){
-                cmbCategorias.getItems().add(Conexion.result.getString(1));
+                lstPlatillos.getItems().add(Conexion.result.getString(1));
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            
         }
     }    
 
     @FXML
-    private void mostrarInfo(ActionEvent event) {
+    private void mostrarInfo(ActionEvent event) throws SQLException, FileNotFoundException {
         try{
             String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
             btnModificar.setDisable(false);
@@ -120,18 +121,6 @@ public class ListarCategoriasASISController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("No se puede mostrar imagen del platillo. La imagen no se encuentra en el sistema");
             alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void cargarListView(ActionEvent event) throws SQLException {
-        btnMostrarInfo.setDisable(false);
-        lstPlatillos.getItems().clear();
-        String categoria = (String) cmbCategorias.getValue();
-        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatilloASIS('" + Conexion.asisRest + "','" + categoria + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        while (Conexion.result.next()){
-            lstPlatillos.getItems().add(Conexion.result.getString(1));
         }
     }
 

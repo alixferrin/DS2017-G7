@@ -17,7 +17,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="lblContraseña" layoutX="33.0" layoutY="79.0" text="Contraseña:">
+      <Label fx:id="lblContrasenia" layoutX="33.0" layoutY="79.0" text="Contraseña:">
          <font>
             <Font size="18.0" />
          </font>

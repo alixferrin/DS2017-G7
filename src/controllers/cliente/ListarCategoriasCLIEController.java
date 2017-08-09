@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasbares;
+package controllers.cliente;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,39 +14,39 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import TDAs.Conexion;
 
 /**
  * FXML Controller class
  *
  * @author HOME
  */
-public class BuscarController implements Initializable {
+public class ListarCategoriasCLIEController implements Initializable {
     @FXML
-    private TextField txtBusqueda;
-    @FXML
-    private Button btnBuscar;
+    private ComboBox cmbCategorias;
     @FXML
     private ListView lstPlatillos;
     @FXML
     private TextArea txtDescripcion;
     @FXML
-    private TextArea txtIngredientes;
-    @FXML
     private ImageView imgImagen;
     @FXML
     private Label lblNombre;
     @FXML
-    private Button btnMostrarInfo;
+    private Label lblRestaurante;
     @FXML
-    private Label lblCategoria;
+    private Label lblCateogoria;
+    @FXML
+    private TextArea txtIngredientes;
+    @FXML
+    private Button btnMostrarInfo;
     @FXML
     private ListView lstRestaurante;
 
@@ -55,31 +55,19 @@ public class BuscarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try{
+            Conexion.procedure = Conexion.connection.prepareCall("{call listCategorias()}");
+            Conexion.result = Conexion.procedure.executeQuery();
+            while (Conexion.result.next()){
+                cmbCategorias.getItems().add(Conexion.result.getString(1));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }    
 
     @FXML
-    private void buscar(ActionEvent event) throws SQLException {
-        this.limpiar();
-        lstPlatillos.getItems().clear();
-        String busqueda = txtBusqueda.getText().toUpperCase();
-        Conexion.procedure = Conexion.connection.prepareCall("{call buscarPlatillo('" + busqueda + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        if (!Conexion.result.next()){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Resultados de la búsqueda");
-            alert.setHeaderText(null);
-            alert.setContentText("No se encontraron platillos con los datos ingresados");
-            alert.showAndWait();
-        }else{
-            Conexion.result.beforeFirst();
-            while (Conexion.result.next())
-                lstPlatillos.getItems().add(Conexion.result.getString(1));
-        }
-    }
-
-    @FXML
-    private void showMostrarInfo(ActionEvent event) {
+    private void mostrarInformacion(ActionEvent event){
         try{
             String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
             this.limpiar();
@@ -92,7 +80,7 @@ public class BuscarController implements Initializable {
             Conexion.result = Conexion.procedure.executeQuery();
             Conexion.result.next();
             lblNombre.setText(Conexion.result.getString(2));
-            lblCategoria.setText(Conexion.result.getString(4));
+            lblCateogoria.setText(Conexion.result.getString(4));
             txtDescripcion.setText(Conexion.result.getString(3));
             txtIngredientes.setText(Conexion.result.getString(6));
             Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(5)));
@@ -111,13 +99,25 @@ public class BuscarController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void cargarListView(ActionEvent event) throws SQLException{
+        lstPlatillos.getItems().clear();
+        String categoria = (String) cmbCategorias.getValue();
+        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatillos('" + categoria + "')}");
+        Conexion.result = Conexion.procedure.executeQuery();
+        while (Conexion.result.next()){
+            lstPlatillos.getItems().add(Conexion.result.getString(1));
+        }
+    }
     
     private void limpiar(){
         lblNombre.setText("");
-        lblCategoria.setText("");
+        lblCateogoria.setText("");
         txtDescripcion.clear();
         lstRestaurante.getItems().clear();
         txtIngredientes.clear();
         imgImagen.setImage(null);
     }
+    
 }
