@@ -45,6 +45,8 @@ public class LogginController implements Initializable {
     @FXML
     private Label lblContrasenia;
     
+    Conexion con = Conexion.getInstance();
+    
     private void showMenu(ActionEvent event, String fxmlDocument) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         try{

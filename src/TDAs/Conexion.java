@@ -15,9 +15,32 @@ import java.sql.CallableStatement;
  * @author Hawk
  */
 public class Conexion {
-    public static Connection connection = null;
-    public static Statement statement = null;
-    public static ResultSet result = null;
-    public static CallableStatement procedure= null;
-    public static String asisRest = null;
+    private static Conexion instance = new Conexion();
+    private Connection connection = null;
+    private ResultSet result = null;
+    private CallableStatement procedure= null;
+    private String asisRest = null;
+    
+    private Conexion(){};
+    
+    public static Conexion getInstance(){
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public ResultSet getResult() {
+        return result;
+    }
+
+    public CallableStatement getProcedure() {
+        return procedure;
+    }
+
+    public String getAsisRest() {
+        return asisRest;
+    }
+    
 }
