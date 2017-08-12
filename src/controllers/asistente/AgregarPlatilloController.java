@@ -64,22 +64,23 @@ public class AgregarPlatilloController implements Initializable {
     
     private String[] datosImagen = {"",""};
     File foto;
+    Conexion conexion = Conexion.getInstance();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call getTipos()}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next())
-                cmbTipo.getItems().add(Conexion.result.getString(1));
-            Conexion.procedure = Conexion.connection.prepareCall("{call getServido()}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next())
-                cmbServido.getItems().add(Conexion.result.getString(1));
-            Conexion.procedure = Conexion.connection.prepareCall("{call getRestDeASIS('" + Conexion.asisRest + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next())
-                cmbRestaurante.getItems().add(Conexion.result.getString(1));
+            conexion.setProcedure("{call getTipos()}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado())
+                cmbTipo.getItems().add(conexion.getResultFila(1));
+            conexion.setProcedure("{call getServido()}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado())
+                cmbServido.getItems().add(conexion.getResultFila(1));
+            conexion.setProcedure("{call getRestDeASIS('" + Conexion.asisRest + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado())
+                cmbRestaurante.getItems().add(conexion.getResultFila(1));
         }catch (SQLException sql){
             sql.printStackTrace();
         }
@@ -91,18 +92,18 @@ public class AgregarPlatilloController implements Initializable {
             try{
                 String IDRest = "";
                 String IDPlat = "";
-                Conexion.procedure = Conexion.connection.prepareCall("{call nuevoPlatillo('" + txtNombre.getText().toUpperCase() + "','" + txtDescripcion.getText().toUpperCase() + "','" + txtIngredientes.getText().toUpperCase() + "','" + txtCategoria.getText().toUpperCase() + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "')}");
-                Conexion.procedure.execute();
-                Conexion.procedure = Conexion.connection.prepareCall("{call getIDRest('" + (String)cmbRestaurante.getValue() + "')}");
-                Conexion.result = Conexion.procedure.executeQuery();
-                Conexion.result.next();
-                IDRest = Conexion.result.getString(1);
-                Conexion.procedure = Conexion.connection.prepareCall("{call getPlatID('" + txtNombre.getText() + "')}");
-                Conexion.result = Conexion.procedure.executeQuery();
-                Conexion.result.next();
-                IDPlat = Conexion.result.getString(1);
-                Conexion.procedure = Conexion.connection.prepareCall("{call insertMenu('" + IDPlat + "','" + IDRest + "')}");
-                Conexion.procedure.execute();
+                conexion.setProcedure("{call nuevoPlatillo('" + txtNombre.getText().toUpperCase() + "','" + txtDescripcion.getText().toUpperCase() + "','" + txtIngredientes.getText().toUpperCase() + "','" + txtCategoria.getText().toUpperCase() + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "')}");
+                conexion.ejecutarQuery();
+                conexion.setProcedure("{call getIDRest('" + (String)cmbRestaurante.getValue() + "')}");
+                conexion.ejecutarQuery();
+                conexion.iterarResultado();
+                IDRest = conexion.getResultFila(1);
+                conexion.setProcedure("{call getPlatID('" + txtNombre.getText() + "')}");
+                conexion.ejecutarQuery();
+                conexion.iterarResultado();
+                IDPlat = conexion.getResultFila(1);
+                conexion.setProcedure("{call insertMenu('" + IDPlat + "','" + IDRest + "')}");
+                conexion.iterarResultado();
                 Path FROM = Paths.get(this.foto.getAbsolutePath());
                 Path TO = Paths.get("imgs\\" + this.foto.getName());
                 CopyOption[] options = new CopyOption[]{

@@ -25,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import TDAs.Conexion;
+import TDAs.roles.Asistente;
+import TDAs.roles.Cliente;
 
 /**
  *
@@ -45,7 +47,7 @@ public class LogginController implements Initializable {
     @FXML
     private Label lblContrasenia;
     
-    Conexion con = Conexion.getInstance();
+    Conexion conexion = Conexion.getInstance();
     
     private void showMenu(ActionEvent event, String fxmlDocument) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -64,17 +66,19 @@ public class LogginController implements Initializable {
         String pwrd = txtPassword.getText();
         String level = "";
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{Call login('" + usr + "','" + pwrd + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            if (!Conexion.result.next())
+            conexion.setProcedure("{Call login('" + usr + "','" + pwrd + "')}") ;
+            conexion.ejecutarQuery();
+            if (!conexion.iterarResultado())
                 lblNada.setText("Usuario o contraseña incorrecta");
             else{
-                level = Conexion.result.getString(1);
+                level = conexion.getResultFila(6);
                 System.out.println(level);
-                if (level.equals("1"))
+                if (level.equals("1")){
+                    Cliente cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
                     this.showMenu(event, "Cliente.fxml");
-                else{
-                    Conexion.asisRest = Conexion.result.getString(2);
+                }else{
+                    Asistente asistente = new Asistente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
+                    Conexion.asisRest = conexion.getResultFila(2);
                     this.showMenu(event, "Asistente.fxml");
                 }
             }
@@ -89,7 +93,7 @@ public class LogginController implements Initializable {
         String pwrd = "saverio.1995";
         try{
             //Esta clase sirve para generar la conexion en SQL
-            Conexion.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, pwrd);
+            conexion.setConnexion(user, pwrd);
         }catch(SQLException ex){
             Logger.getLogger(LogginController.class.getName()).log(Level.SEVERE, null, ex);
         }

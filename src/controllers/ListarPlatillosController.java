@@ -70,15 +70,16 @@ public class ListarPlatillosController implements Initializable {
     private String[] datosImagen = {"",""};
     private String id_plato = "";
     File foto;
+    Conexion conexion = Conexion.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtDescripcion.setWrapText(true);
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call listPlatillos('" + Conexion.asisRest + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next()){
-                lstPlatillos.getItems().add(Conexion.result.getString(1));
+            conexion.setProcedure("{call listPlatillos('" + Conexion.asisRest + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado()){
+                lstPlatillos.getItems().add(conexion.getResultFila(1));
             }
         }catch (SQLException e){
             
@@ -92,20 +93,20 @@ public class ListarPlatillosController implements Initializable {
             btnModificar.setDisable(false);
             this.limpiar();
             this.deshabilitar();
-            Conexion.procedure = Conexion.connection.prepareCall("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next()){
-                lstRestaurante.getItems().add(Conexion.result.getString(1));
+            conexion.setProcedure("{call getRestASIS('" + Conexion.asisRest + "','" + nombrePla + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado()){
+                lstRestaurante.getItems().add(conexion.getResultFila(1));
             }
-            Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            Conexion.result.next();
-            this.id_plato = Conexion.result.getString(1);
-            txtNombre.setText(Conexion.result.getString(2));
-            txtCategoria.setText(Conexion.result.getString(4));
-            txtDescripcion.setText(Conexion.result.getString(3));
-            txtIngredientes.setText(Conexion.result.getString(6));
-            String img = Conexion.result.getString(5);
+            conexion.setProcedure("{call getInfoPla('" + nombrePla + "')}");
+            conexion.ejecutarQuery();
+            conexion.iterarResultado();
+            this.id_plato = conexion.getResultFila(1);
+            txtNombre.setText(conexion.getResultFila(2));
+            txtCategoria.setText(conexion.getResultFila(4));
+            txtDescripcion.setText(conexion.getResultFila(3));
+            txtIngredientes.setText(conexion.getResultFila(6));
+            String img = conexion.getResultFila(5);
             this.datosImagen[0] = img;
             Image imagen = new Image(new FileInputStream("imgs\\" + img));
             imgImagen.setImage(imagen);
@@ -187,8 +188,8 @@ public class ListarPlatillosController implements Initializable {
     @FXML
     private void modificarPlatillo(ActionEvent event){
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText().toUpperCase() + "','" + this.txtDescripcion.getText().toUpperCase() + "','" + this.txtCategoria.getText().toUpperCase() + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText().toUpperCase() +"')}");
-            Conexion.procedure.execute();
+            conexion.setProcedure("{call modificarPlatillo('" + this.id_plato + "','" + this.txtNombre.getText().toUpperCase() + "','" + this.txtDescripcion.getText().toUpperCase() + "','" + this.txtCategoria.getText().toUpperCase() + "','" + this.datosImagen[0] + "','" + this.txtIngredientes.getText().toUpperCase() +"')}");
+            conexion.getProcedure().execute();
             
             if (this.foto != null){
                 Path FROM = Paths.get(this.foto.getAbsolutePath());

@@ -49,17 +49,18 @@ public class ListarCategoriasCLIEController implements Initializable {
     private Button btnMostrarInfo;
     @FXML
     private ListView lstRestaurante;
-
+    
+    Conexion conexion = Conexion.getInstance();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try{
-            Conexion.procedure = Conexion.connection.prepareCall("{call listCategorias()}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next()){
-                cmbCategorias.getItems().add(Conexion.result.getString(1));
+            conexion.setProcedure("{call listCategorias()}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado()){
+                cmbCategorias.getItems().add(conexion.getResultFila(1));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -71,19 +72,19 @@ public class ListarCategoriasCLIEController implements Initializable {
         try{
             String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
             this.limpiar();
-            Conexion.procedure = Conexion.connection.prepareCall("{call getRest('" + nombrePla + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            while (Conexion.result.next()){
-                lstRestaurante.getItems().add(Conexion.result.getString(1));
+            conexion.setProcedure("{call getRest('" + nombrePla + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado()){
+                lstRestaurante.getItems().add(conexion.getResultFila(1));
             }
-            Conexion.procedure = Conexion.connection.prepareCall("{call getInfoPla('" + nombrePla + "')}");
-            Conexion.result = Conexion.procedure.executeQuery();
-            Conexion.result.next();
-            lblNombre.setText(Conexion.result.getString(2));
-            lblCateogoria.setText(Conexion.result.getString(4));
-            txtDescripcion.setText(Conexion.result.getString(3));
-            txtIngredientes.setText(Conexion.result.getString(6));
-            Image imagen = new Image(new FileInputStream("imgs\\" + Conexion.result.getString(5)));
+            conexion.setProcedure("{call getInfoPla('" + nombrePla + "')}");
+            conexion.ejecutarQuery();
+            conexion.iterarResultado();
+            lblNombre.setText(conexion.getResultFila(2));
+            lblCateogoria.setText(conexion.getResultFila(4));
+            txtDescripcion.setText(conexion.getResultFila(3));
+            txtIngredientes.setText(conexion.getResultFila(6));
+            Image imagen = new Image(new FileInputStream("imgs\\" + conexion.getResultFila(5)));
             imgImagen.setImage(imagen);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -104,10 +105,10 @@ public class ListarCategoriasCLIEController implements Initializable {
     private void cargarListView(ActionEvent event) throws SQLException{
         lstPlatillos.getItems().clear();
         String categoria = (String) cmbCategorias.getValue();
-        Conexion.procedure = Conexion.connection.prepareCall("{call mostrarPlatillos('" + categoria + "')}");
-        Conexion.result = Conexion.procedure.executeQuery();
-        while (Conexion.result.next()){
-            lstPlatillos.getItems().add(Conexion.result.getString(1));
+        conexion.setProcedure("{call mostrarPlatillos('" + categoria + "')}");
+        conexion.ejecutarQuery();
+        while (conexion.iterarResultado()){
+            lstPlatillos.getItems().add(conexion.getResultFila(1));
         }
     }
     

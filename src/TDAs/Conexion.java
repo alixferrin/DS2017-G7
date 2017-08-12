@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.CallableStatement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,10 +18,10 @@ import java.sql.CallableStatement;
  */
 public class Conexion {
     private static Conexion instance = new Conexion();
-    private Connection connection = null;
+    private Connection conexion = null;
     private ResultSet result = null;
     private CallableStatement procedure= null;
-    private String asisRest = null;
+    public static String asisRest = null;
     
     private Conexion(){};
     
@@ -27,12 +29,20 @@ public class Conexion {
         return instance;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnexion() {
+        return conexion;
     }
-
-    public ResultSet getResult() {
+    
+    public ResultSet getResultSet(){
         return result;
+    }
+    
+    public boolean iterarResultado() throws SQLException{
+        return result.next();
+    }
+    
+    public String getResultFila(int num) throws SQLException{
+        return result.getString(num);
     }
 
     public CallableStatement getProcedure() {
@@ -43,4 +53,15 @@ public class Conexion {
         return asisRest;
     }
     
+    public void setProcedure(String call) throws SQLException{
+        procedure = conexion.prepareCall(call);
+    }
+    
+    public void setConnexion(String user, String password) throws SQLException{
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, password);
+    }
+    
+    public void ejecutarQuery() throws SQLException{
+        result = procedure.executeQuery();
+    }
 }
