@@ -132,7 +132,7 @@ DELIMITER $$
 CREATE PROCEDURE `modificarUsuario` (IN ID varchar(10), IN newNombre varchar(50), IN newApellido varchar(50), IN newNick varchar(50), IN newPass varchar(50), IN newLevel varchar(10))
 BEGIN
 	update usuario_tb
-    set nombre_usu = newNombre, apellido_usu = newApellido, nickname = newNick, password = newPass, level = newLevel
+    set nombre_usu = newNombre, apellido_usu = newApellido, username = newNick, contrasenia = newPass, acceso = newLevel
     where id_usuario = ID;
 END $$
 DELIMITER ;
@@ -140,9 +140,9 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50))
 BEGIN
-	SELECT level, id_usuario
+	SELECT *
     from usuario_tb
-    where nickname = nick and pass = pass; 
+    where username = nick and contrasenia = pass; 
 END $$
 DELIMITER ;
 
@@ -204,3 +204,5 @@ BEGIN
 	SELECT DISTINCT servido FROM platillo_tb;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE login;

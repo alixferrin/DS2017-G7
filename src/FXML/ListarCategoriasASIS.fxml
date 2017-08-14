@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.ListarCategoriasASISController">
+<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.asistente.ListarCategoriasASISController">
    <children>
       <ListView fx:id="lstPlatillos" layoutX="43.0" layoutY="72.0" prefHeight="420.0" prefWidth="244.0" />
       <Label layoutX="311.0" layoutY="52.0" text="Nombre:">

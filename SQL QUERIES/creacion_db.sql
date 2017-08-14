@@ -6,9 +6,9 @@ CREATE TABLE `usuario_tb`(
   `id_usuario` varchar(10) NOT NULL,
   `nombre_usu` varchar(50) NOT NULL,
   `apellido_usu` varchar(50) NOT NULL,
-  `nickname` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `level` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `contrasenia` varchar(50) NOT NULL,
+  `acceso` varchar(50) NOT NULL,
   PRIMARY KEY (`id_usuario`)
   );
 

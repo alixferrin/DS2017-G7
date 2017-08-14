@@ -48,11 +48,12 @@ public class LogginController implements Initializable {
     private Label lblContrasenia;
     
     Conexion conexion = Conexion.getInstance();
+    Cliente cliente;
     
     private void showMenu(ActionEvent event, String fxmlDocument) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         try{
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(fxmlDocument))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/"+fxmlDocument))));
             stage.setTitle(fxmlDocument.substring(0, fxmlDocument.lastIndexOf(".")));
             stage.centerOnScreen();
         }catch(IOException e){ 
@@ -72,9 +73,9 @@ public class LogginController implements Initializable {
                 lblNada.setText("Usuario o contraseña incorrecta");
             else{
                 level = conexion.getResultFila(6);
-                System.out.println(level);
                 if (level.equals("1")){
-                    Cliente cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
+                    cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
+                    System.out.println(cliente.toString());
                     this.showMenu(event, "Cliente.fxml");
                 }else{
                     Asistente asistente = new Asistente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);

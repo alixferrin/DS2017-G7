@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.ListarCategoriasCLIEController">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.cliente.ListarCategoriasCLIEController">
    <children>
       <ComboBox fx:id="cmbCategorias" layoutX="56.0" layoutY="82.0" onAction="#cargarListView" prefHeight="25.0" prefWidth="244.0" />
       <ListView fx:id="lstPlatillos" layoutX="56.0" layoutY="137.0" prefHeight="381.0" prefWidth="244.0" />

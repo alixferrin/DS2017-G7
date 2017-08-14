@@ -38,7 +38,7 @@ public class ClienteController implements Initializable {
     @FXML
     private void showListarCategoriasCLIE(ActionEvent event) throws IOException{
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("ListarCategoriasCLIE.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasCLIE.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
     }
@@ -51,7 +51,7 @@ public class ClienteController implements Initializable {
     @FXML
     private void showBuscar(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("Buscar.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/Buscar.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
     }

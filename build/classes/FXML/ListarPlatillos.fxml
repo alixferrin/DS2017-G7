@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -10,38 +9,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemasbares.ListarCategoriasASISController">
+<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListarPlatillosController">
    <children>
-      <ListView fx:id="lstPlatillos" layoutX="43.0" layoutY="72.0" prefHeight="420.0" prefWidth="244.0" />
-      <Label layoutX="311.0" layoutY="52.0" text="Nombre:">
+      <ListView fx:id="lstPlatillos" layoutX="43.0" layoutY="33.0" prefHeight="459.0" prefWidth="244.0" />
+      <Label layoutX="315.0" layoutY="32.0" text="Nombre:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="313.0" layoutY="120.0" text="Restaurantes donde se sirve este plato:">
+      <Label layoutX="314.0" layoutY="101.0" text="Restaurante:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="87.0" text="Categoria:">
+      <Label layoutX="314.0" layoutY="66.0" text="Categoria:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="312.0" layoutY="242.0" text="Ingredientes:">
+      <Label layoutX="314.0" layoutY="228.0" text="Ingredientes:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="314.0" layoutY="368.0" text="Descripción:">
+      <Label layoutX="315.0" layoutY="358.0" text="Descripción:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="313.0" layoutY="393.0" prefHeight="98.0" prefWidth="289.0" wrapText="true" />
-      <TextArea fx:id="txtIngredientes" editable="false" layoutX="313.0" layoutY="268.0" prefHeight="88.0" prefWidth="289.0" wrapText="true" />
-      <TextField fx:id="txtNombre" editable="false" layoutX="406.0" layoutY="49.0" prefHeight="25.0" prefWidth="193.0" />
-      <TextField fx:id="txtCategoria" editable="false" layoutX="406.0" layoutY="84.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextArea fx:id="txtDescripcion" editable="false" layoutX="313.0" layoutY="386.0" prefHeight="108.0" prefWidth="289.0" wrapText="true" />
+      <TextArea fx:id="txtIngredientes" editable="false" layoutX="314.0" layoutY="256.0" prefHeight="88.0" prefWidth="289.0" wrapText="true" />
+      <TextField fx:id="txtNombre" editable="false" layoutX="408.0" layoutY="29.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="txtCategoria" editable="false" layoutX="409.0" layoutY="63.0" prefHeight="25.0" prefWidth="193.0" />
       <Label layoutX="619.0" layoutY="29.0" text="Imagen:">
          <font>
             <Font size="14.0" />
@@ -52,8 +51,7 @@
       <Button fx:id="btnGuardar" disable="true" layoutX="543.0" layoutY="499.0" mnemonicParsing="false" onAction="#modificarPlatillo" text="Guardar" />
       <Button fx:id="btnLimpiar" disable="true" layoutX="380.0" layoutY="499.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
       <Button fx:id="btnCargarIMG" disable="true" layoutX="865.0" layoutY="499.0" mnemonicParsing="false" onAction="#cargarFoto" text="Cargar Imagen" />
-      <ComboBox fx:id="cmbCategorias" layoutX="43.0" layoutY="30.0" onAction="#cargarListView" prefHeight="25.0" prefWidth="244.0" />
-      <Button fx:id="btnMostrarInfo" disable="true" layoutX="162.0" layoutY="499.0" mnemonicParsing="false" onAction="#mostrarInfo" text="Mostrar Información" />
-      <ListView fx:id="lstRestaurante" layoutX="313.0" layoutY="148.0" prefHeight="88.0" prefWidth="289.0" />
+      <Button fx:id="btnMostrarInfo" layoutX="165.0" layoutY="499.0" mnemonicParsing="false" onAction="#mostrarInfo" text="Mostrar Información" />
+      <ListView fx:id="lstRestaurante" layoutX="313.0" layoutY="130.0" prefHeight="88.0" prefWidth="289.0" />
    </children>
 </AnchorPane>

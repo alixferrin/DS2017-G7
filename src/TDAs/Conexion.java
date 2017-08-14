@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * @author Hawk
  */
 public class Conexion {
-    private static Conexion instance = new Conexion();
+    private static final Conexion instance = new Conexion();
     private Connection conexion = null;
     private ResultSet result = null;
     private CallableStatement procedure= null;

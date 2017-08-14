@@ -10,15 +10,15 @@ package TDAs.roles;
  * @author HOME
  */
 public class Usuario {
-    private String cedula, nombre, apellido, userName, password, level;
+    private String cedula, nombre, apellido, userName, password, acceso;
 
-    public Usuario(String cedula, String nombre, String apellido, String userName, String password, String level) {
+    public Usuario(String cedula, String nombre, String apellido, String userName, String password, String acceso) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.userName = userName;
         this.password = password;
-        this.level = level;
+        this.acceso = acceso;
     }
 
     public String getCedula() {
@@ -42,7 +42,12 @@ public class Usuario {
     }
 
     public String getLevel() {
-        return level;
+        return acceso;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", userName=" + userName + ", password=" + password + ", acceso=" + acceso + '}';
     }
     
 }

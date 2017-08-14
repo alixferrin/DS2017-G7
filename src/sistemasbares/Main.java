@@ -5,7 +5,6 @@
  */
 package sistemasbares;
 
-import TDAs.Conexion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +24,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Main.stage = stage;
         
-        root = FXMLLoader.load(getClass().getResource("Loggin.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXML/Loggin.fxml"));
         
         scene = new Scene(root);
         
