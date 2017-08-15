@@ -73,13 +73,15 @@ public class LogginController implements Initializable {
                 lblNada.setText("Usuario o contraseña incorrecta");
             else{
                 level = conexion.getResultFila(6);
+                System.out.println(level);
                 if (level.equals("1")){
                     cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
                     System.out.println(cliente.toString());
                     this.showMenu(event, "Cliente.fxml");
                 }else{
                     Asistente asistente = new Asistente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
-                    Conexion.asisRest = conexion.getResultFila(2);
+                    Conexion.asisRest = conexion.getResultFila(1);
+                    System.out.println(asistente.toString());
                     this.showMenu(event, "Asistente.fxml");
                 }
             }
@@ -91,7 +93,7 @@ public class LogginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String user = "root";
-        String pwrd = "saverio.1995";
+        String pwrd = "";
         try{
             //Esta clase sirve para generar la conexion en SQL
             conexion.setConnexion(user, pwrd);

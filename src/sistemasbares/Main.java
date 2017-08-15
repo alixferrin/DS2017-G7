@@ -42,7 +42,7 @@ public class Main extends Application {
     }
     
     public static void logout() throws Exception{
-        root = FXMLLoader.load(Main.class.getResource("Loggin.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("/FXML/Loggin.fxml"));
         
         scene = new Scene(root);
         

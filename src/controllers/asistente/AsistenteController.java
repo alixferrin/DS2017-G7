@@ -48,7 +48,7 @@ public class AsistenteController implements Initializable {
     @FXML
     private void showAgregarPlatillo(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("AgregarPlatillo.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
     }
@@ -56,7 +56,7 @@ public class AsistenteController implements Initializable {
     @FXML
     private void showListarPlatillos(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("ListarPlatillos.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarPlatillos.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n, Pos.CENTER);
     }
@@ -64,7 +64,7 @@ public class AsistenteController implements Initializable {
     @FXML
     private void showListarCategoriasASIS(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("ListarCategoriasASIS.fxml"));
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n, Pos.CENTER);
     }
