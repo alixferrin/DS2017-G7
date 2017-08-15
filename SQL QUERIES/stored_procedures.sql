@@ -83,17 +83,17 @@ DELIMITER ;
 
 /*PARA restaurante_tb*/
 DELIMITER $$
-CREATE PROCEDURE `nuevoRestaurante` (IN newID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10))
+CREATE PROCEDURE `nuevoRestaurante` (IN newID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10), IN newCompra varchar(10))
 BEGIN
-	insert into restaurante_tb values (newID, newNombre, newDireccion, newTelf, newDueno, newAsist);
+	insert into restaurante_tb values (newID, newNombre, newDireccion, newTelf, newDueno, newAsist, newCompra);
 END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `modificarRestaurante` (IN ID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10))
+CREATE PROCEDURE `modificarRestaurante` (IN ID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10), IN newCompra varchar(10))
 BEGIN
 	update restaurante_tb
-    set nombre_rest = newNombre, direccion_rest = newDireccion, telf_rest = newTelf, dueno_rest = newDueno, asist_rest = newAsist
+    set nombre_rest = newNombre, direccion_rest = newDireccion, telf_rest = newTelf, dueno_rest = newDueno, asist_rest = newAsist, opCompra_rest = newCompra
     where id_restaurante = ID;
 END $$
 DELIMITER ;
@@ -119,6 +119,14 @@ BEGIN
 	SELECT id_restaurante FROM restaurante_tb WHERE nombre_rest = nom;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getHabilitadosCompra` (IN nom VARCHAR(50))
+BEGIN
+	SELECT id_restaurante FROM restaurante_tb WHERE opCompra_rest = "1";
+END $$
+DELIMITER ;
+
 
 /*PARA usuario_tb*/
 DELIMITER $$
@@ -205,4 +213,28 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE login;
+/*Para carnet*/
+DELIMITER $$
+CREATE PROCEDURE `nuevoCarnet` (IN matricula VARCHAR(50))
+BEGIN
+	INSERT INTO carnet_tb values (matricula, 0);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `setSaldo` (IN matricula VARCHAR(50), IN sal int)
+BEGIN
+	UPDATE carnet_tb SET saldo = saldo + sal WHERE id_carnet = matricula;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getSaldo` (IN matricula VARCHAR(50))
+BEGIN
+	SELECT saldo FROM carnet_tb WHERE id_carnet = matricula;
+END $$
+DELIMITER ;
+
+
+
+

@@ -34,6 +34,7 @@ CREATE TABLE `platillo_tb`(
   `telf_rest` varchar(50) DEFAULT NULL,
   `dueno_rest` varchar(50) NOT NULL,
   `asist_rest` varchar(10) NOT NULL,
+  `opComprar_rest` varchar(10) NOT NULL,
   PRIMARY KEY (`id_restaurante`),
   CONSTRAINT `restaurante_FK1` FOREIGN KEY (`asist_rest`) REFERENCES `usuario_tb` (`id_usuario`)
   );  
@@ -45,4 +46,13 @@ CREATE TABLE `menu_tb`(
   CONSTRAINT `menu_FK1` FOREIGN KEY (`id_platillo`) REFERENCES `platillo_tb` (`id_platillo`),
   CONSTRAINT `menu_FK2` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurante_tb` (`id_restaurante`)
   );
+  
+CREATE TABLE `carnet_tb`(
+  `id_carnet` varchar(10) NOT NULL,
+  `saldo`int,
+  PRIMARY KEY (`id_carnet`),
+  CONSTRAINT `idcarnet_FK1` FOREIGN KEY (`id_carnet`) REFERENCES `usuario_tb` (`id_usuario`)
+  );
+  
+  
   
