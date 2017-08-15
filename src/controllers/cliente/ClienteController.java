@@ -34,6 +34,8 @@ public class ClienteController implements Initializable {
     private Menu menuClategorias;
     @FXML
     private MenuItem menuListCategoria;
+    @FXML
+    private Menu menuPedido;
     
     @FXML
     private void showListarCategoriasCLIE(ActionEvent event) throws IOException{
@@ -68,6 +70,15 @@ public class ClienteController implements Initializable {
     @FXML
     private void cerrar(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    private void showComprar(ActionEvent event) throws IOException {
+        loaderPane.getChildren().clear();
+        Node n = FXMLLoader.load(getClass().getResource("/FXML/Ordenar.fxml"));
+        loaderPane.getChildren().add(n);
+        StackPane.setAlignment(n, Pos.CENTER);
+        
     }
     
 }
