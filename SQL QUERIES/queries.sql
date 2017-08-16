@@ -86,7 +86,3 @@ INSERT INTO menu_tb VALUE ('RST10', 5);
 INSERT INTO menu_tb VALUE ('RST10', 6);
 INSERT INTO menu_tb VALUE ('RST10', 8);
 INSERT INTO menu_tb VALUE ('RST10', 9);
-
-
-
-

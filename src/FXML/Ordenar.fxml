@@ -12,51 +12,35 @@
 
 <AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.cliente.OrdenarController">
    <children>
-      <ListView fx:id="lstRestaurante" layoutX="334.0" layoutY="186.0" prefHeight="81.0" prefWidth="244.0" />
       <Button fx:id="btnMostrarInfo" layoutX="161.0" layoutY="538.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea fx:id="txtIngredientes" editable="false" layoutX="336.0" layoutY="305.0" prefHeight="88.0" prefWidth="244.0" wrapText="true" />
-      <Label fx:id="lblCateogoria" layoutX="407.0" layoutY="122.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblNombre" layoutX="406.0" layoutY="96.0">
+      <TextArea fx:id="txtIngredientes" editable="false" layoutX="336.0" layoutY="175.0" prefHeight="140.0" prefWidth="244.0" wrapText="true" />
+      <Label fx:id="lblNombre" layoutX="411.0" layoutY="120.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <ImageView fx:id="imgImagen" fitHeight="370.0" fitWidth="341.0" layoutX="613.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="336.0" layoutY="431.0" prefHeight="96.0" prefWidth="244.0" wrapText="true" />
+      <TextArea fx:id="txtDescripcion" editable="false" layoutX="336.0" layoutY="350.0" prefHeight="177.0" prefWidth="244.0" wrapText="true" />
       <Label layoutX="613.0" layoutY="123.0" text="Imagen:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="337.0" layoutY="407.0" text="Descripción:">
+      <Label layoutX="338.0" layoutY="322.0" text="Descripción:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="334.0" layoutY="278.0" text="Ingredientes:">
+      <Label layoutX="338.0" layoutY="146.0" text="Ingredientes:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="332.0" layoutY="122.0" text="Categoria:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="334.0" layoutY="159.0" text="Restaurantes que ofrecen este platillo:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="333.0" layoutY="98.0" text="Nombre:">
+      <Label layoutX="338.0" layoutY="122.0" text="Nombre:">
          <font>
             <Font size="14.0" />
          </font>
