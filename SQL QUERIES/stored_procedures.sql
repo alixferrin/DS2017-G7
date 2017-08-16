@@ -235,6 +235,27 @@ BEGIN
 END $$
 DELIMITER ;
 
+/*para orden*/
+DELIMITER $$
+CREATE PROCEDURE `nuevaOrdenCarnet` (IN matricula VARCHAR(50), IN hora varchar(30), IN coste int)
+BEGIN
+	INSERT INTO carnet_tb values (0, hora, matricula);
+    UPDATE carnet_tb SET saldo = saldo - coste WHERE id_carnet = matricula;
+END $$
+DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `nuevaOrdenTarjeta` (IN hora varchar(30))
+BEGIN
+	INSERT INTO carnet_tb values (0, hora, NULL);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `listarOrdenPorMatricula` (IN matricula varchar(50))
+BEGIN
+	SELECT * FROM orden_tb WHERE cliente = matricula;
+END $$
+DELIMITER ;
 
 
