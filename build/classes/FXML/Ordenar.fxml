@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.ComprarController">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.cliente.OrdenarController">
    <children>
       <ListView fx:id="lstRestaurante" layoutX="334.0" layoutY="186.0" prefHeight="81.0" prefWidth="244.0" />
       <Button fx:id="btnMostrarInfo" layoutX="161.0" layoutY="538.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button fx:id="btnOrdenar" layoutX="745.0" layoutY="538.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="209.0" text="Pagar con Carnet">
+      <Button fx:id="btnOrdenar" layoutX="745.0" layoutY="538.0" mnemonicParsing="false" onAction="#showCarnet" prefHeight="30.0" prefWidth="209.0" text="Pagar con Carnet">
          <font>
             <Font size="14.0" />
          </font>
@@ -89,7 +89,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnOrdenar1" layoutX="745.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="209.0" text="Pagar con Tarjeta de crédito">
+      <Button fx:id="btnOrdenar1" layoutX="745.0" layoutY="578.0" mnemonicParsing="false" onAction="#showTarjeta" prefHeight="30.0" prefWidth="209.0" text="Pagar con Tarjeta de crédito">
          <font>
             <Font size="14.0" />
          </font>

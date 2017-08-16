@@ -93,7 +93,7 @@ public class LogginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String user = "root";
-        String pwrd = "";
+        String pwrd = "saverio.1995";
         try{
             //Esta clase sirve para generar la conexion en SQL
             conexion.setConnexion(user, pwrd);

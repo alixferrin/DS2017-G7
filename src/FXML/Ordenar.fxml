@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button fx:id="btnOrdenar" layoutX="745.0" layoutY="538.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="209.0" text="Pagar con Carnet">
+      <Button fx:id="btnOrdenar" layoutX="745.0" layoutY="538.0" mnemonicParsing="false" onAction="#showCarnet" prefHeight="30.0" prefWidth="209.0" text="Pagar con Carnet">
          <font>
             <Font size="14.0" />
          </font>
@@ -89,7 +89,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnOrdenar1" layoutX="745.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="209.0" text="Pagar con Tarjeta de crédito">
+      <Button fx:id="btnOrdenar1" layoutX="745.0" layoutY="578.0" mnemonicParsing="false" onAction="#showTarjeta" prefHeight="30.0" prefWidth="209.0" text="Pagar con Tarjeta de crédito">
          <font>
             <Font size="14.0" />
          </font>
