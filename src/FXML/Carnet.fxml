@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Spinner layoutX="101.0" layoutY="68.0" />
+      <Label layoutX="41.0" layoutY="70.0" text="Desde:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="263.0" layoutY="71.0" text="Hasta:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Spinner layoutX="323.0" layoutY="68.0" />
+      <Label layoutX="41.0" layoutY="38.0" text="Hora para recoger el pedido:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="126.0" text="Usuario:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="41.0" layoutY="149.0" prefHeight="25.0" prefWidth="190.0" />
+      <Button layoutX="344.0" layoutY="187.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Pagar" />
+      <Label layoutX="262.0" layoutY="126.0" text="Constraseña:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="259.0" layoutY="149.0" prefHeight="25.0" prefWidth="216.0" />
+      <Separator layoutX="36.0" layoutY="114.0" prefHeight="2.0" prefWidth="435.0" />
+   </children>
+</AnchorPane>

@@ -1,82 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="FXML.ComprarController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="lstRestaurante" layoutX="334.0" layoutY="186.0" prefHeight="81.0" prefWidth="244.0" />
-      <Button fx:id="btnMostrarInfo" layoutX="161.0" layoutY="538.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TextArea fx:id="txtIngredientes" editable="false" layoutX="336.0" layoutY="305.0" prefHeight="88.0" prefWidth="244.0" wrapText="true" />
-      <Label fx:id="lblCateogoria" layoutX="407.0" layoutY="122.0">
+      <Spinner layoutX="101.0" layoutY="68.0" />
+      <Label layoutX="41.0" layoutY="36.0" text="Especifique el tiempo aporximado para recoger el pedido">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblNombre" layoutX="406.0" layoutY="96.0">
+      <Label layoutX="41.0" layoutY="70.0" text="Desde:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgImagen" fitHeight="370.0" fitWidth="341.0" layoutX="613.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="336.0" layoutY="431.0" prefHeight="96.0" prefWidth="244.0" wrapText="true" />
-      <Label layoutX="613.0" layoutY="123.0" text="Imagen:">
+      <Label layoutX="41.0" layoutY="106.0" text="Hasta:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="337.0" layoutY="407.0" text="Descripción:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="334.0" layoutY="278.0" text="Ingredientes:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="122.0" text="Categoria:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="334.0" layoutY="159.0" text="Restaurantes que ofrecen este platillo:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="333.0" layoutY="98.0" text="Nombre:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <ListView fx:id="lstCategoria" layoutX="66.0" layoutY="147.0" prefHeight="96.0" prefWidth="244.0" />
-      <ComboBox fx:id="cmbRestaurante" layoutX="66.0" layoutY="92.0" onAction="#cargarListView" prefHeight="25.0" prefWidth="244.0" />
-      <ListView fx:id="lstPlatillos" layoutX="66.0" layoutY="278.0" prefHeight="249.0" prefWidth="244.0" />
-      <CheckBox fx:id="cboxJugo" layoutX="338.0" layoutY="545.0" mnemonicParsing="false" text="Jugo">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="cboxPostre" layoutX="406.0" layoutY="545.0" mnemonicParsing="false" text="Postre">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </CheckBox>
-      <Button fx:id="btnOrdenar" layoutX="805.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Ordenar">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
+      <Spinner layoutX="101.0" layoutY="103.0" />
+      <Button layoutX="325.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Pagar con carnet" />
+      <Button layoutX="325.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Pagar con tarjeta de crédito" />
    </children>
 </AnchorPane>
