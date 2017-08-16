@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.TarjetaCreditoController">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.cliente.TarjetaCreditoController">
    <children>
       <Label layoutX="41.0" layoutY="38.0" text="Hora para recoger el pedido:">
          <font>

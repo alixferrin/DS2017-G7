@@ -5,8 +5,10 @@
  */
 package controllers.cliente;
 
+import TDAs.Conexion;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,11 +47,11 @@ public class OrdenarController implements Initializable {
     @FXML
     private TextArea txtDescripcion;
     @FXML
-    private ListView<?> lstCategoria;
+    private ComboBox cmbCategorias;
     @FXML
-    private ComboBox<?> cmbRestaurante;
+    private ComboBox cmbRestaurante;
     @FXML
-    private ListView<?> lstPlatillos;
+    private ListView lstPlatillos;
     @FXML
     private CheckBox cboxJugo;
     @FXML
@@ -59,12 +61,21 @@ public class OrdenarController implements Initializable {
     @FXML
     private Button btnOrdenar1;
 
+    Conexion conexion = Conexion.getInstance();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try{
+            conexion.setProcedure("{call listarRestaurantes()}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado()){
+                cmbRestaurante.getItems().add(conexion.getResultFila(1));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }    
 
     @FXML
@@ -73,21 +84,42 @@ public class OrdenarController implements Initializable {
 
     @FXML
     private void cargarListView(ActionEvent event) {
+        lstPlatillos.getItems().clear();
+        String categoria = (String) cmbCategorias.getValue();
+        try{
+            conexion.setProcedure("{call listPlatillosCategoria('" + categoria + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado())
+                lstPlatillos.getItems().add(conexion.getResultFila(1));
+        }catch (SQLException sql){
+            sql.printStackTrace();
+        }
+
     }
     
     @FXML
     private void showTarjeta(ActionEvent event){
-        
+        Stage stage = new Stage();
+        try{
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/TarjetaCredito.fxml"))));
+            stage.setTitle("Pago con tarjeta de credito");
+            stage.centerOnScreen();
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void showCarnet(ActionEvent event){
-        Popup popup = new Popup();
+        Stage stage = new Stage();
         try{
-            Node n = FXMLLoader.load(getClass().getResource("/FXML/Carnet.fxml"));
-            popup.getContent().add(n);
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/Carnet.fxml"))));
+            stage.setTitle("Pago con carnet");
+            stage.centerOnScreen();
+            stage.show();
         }catch (IOException e){
-            System.out.println("Algo salió mal");
+            e.printStackTrace();
         }
     }
     

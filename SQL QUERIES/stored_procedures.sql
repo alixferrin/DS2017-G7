@@ -81,6 +81,13 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE `listPlatillosCategoria`(IN cat VARCHAR(50))
+BEGIN
+	SELECT DISTINCT nombre_pla FROM platillo_tb AS p JOIN menu_tb as m ON p.id_platillo=m.id_platillo JOIN restaurante_tb AS r ON r.id_restaurante=m.id_restaurante WHERE categoria = cat;
+END $$
+DELIMITER ;
+
 /*PARA restaurante_tb*/
 DELIMITER $$
 CREATE PROCEDURE `nuevoRestaurante` (IN newID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10), IN newCompra varchar(10))
@@ -101,8 +108,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `listarRestaurantes` ()
 BEGIN
-	SELECT *
-    from restaurante_tb; 
+	SELECT nombre_rest FROM restaurante_tb WHERE opComprar_rest = '1'; 
 END $$
 DELIMITER ;
 
@@ -258,4 +264,9 @@ BEGIN
 END $$
 DELIMITER ;
 
-
+DELIMITER $$
+CREATE PROCEDURE `listarCategoriaRest` (IN nombre VARCHAR(50))
+BEGIN
+	SELECT * FROM platillo_tb AS p JOIN menu_tb AS m ON m.id_platillo = p.id_platillo JOIN restaurante_tb AS r ON m.id_restaurante = r.id_restaurante AND r.nombre_rest = nombre;
+END $$
+DELIMITER ;
