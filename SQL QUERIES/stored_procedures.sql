@@ -70,7 +70,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getInfoPla` (IN nom VARCHAR(50))
 BEGIN
-	SELECT id_platillo, nombre_pla, descrp_pla, categoria, imagen, ingrediente_pla FROM platillo_tb WHERE nombre_pla = nom;
+	SELECT id_platillo, nombre_pla, descrp_pla, categoria, imagen, ingrediente_pla, precio FROM platillo_tb WHERE nombre_pla = nom;
 END $$
 DELIMITER
 

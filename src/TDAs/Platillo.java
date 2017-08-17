@@ -12,14 +12,15 @@ import TDAs.decorator.Precio;
  * @author HOME
  */
 public class Platillo implements Precio{
-    private String id_platillo, nombre, descripcion, categoria, ingredientes;
+    private String id_platillo, nombre, descripcion, categoria, ingredientes, imagen;
     private double precio;
 
-    public Platillo(String id_platillo, String nombre, String descripcion, String categoria, String ingredientes, String precio) {
+    public Platillo(String id_platillo, String nombre, String descripcion, String categoria, String imagen, String ingredientes, String precio) {
         this.id_platillo = id_platillo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ingredientes = ingredientes;
+        this.imagen = imagen;
         this.categoria = categoria;
         this.precio = Double.parseDouble(precio);
     }
@@ -58,6 +59,10 @@ public class Platillo implements Precio{
 
     public double getPrecio() {
         return precio;
+    }
+
+    public String getImagen() {
+        return imagen;
     }
     
 }

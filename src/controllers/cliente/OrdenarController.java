@@ -7,6 +7,9 @@ package controllers.cliente;
 
 import TDAs.Conexion;
 import TDAs.Platillo;
+import TDAs.decorator.Jugo;
+import TDAs.decorator.Postre;
+import TDAs.decorator.Precio;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,14 +63,13 @@ public class OrdenarController implements Initializable {
     @FXML
     private CheckBox cboxPostre;
     @FXML
-    private Button btnOrdenar;
+    private Button btnCarnet;
     @FXML
-    private Button btnOrdenar1;
+    private Button btnTarjeta;
 
     Conexion conexion = Conexion.getInstance();
-    /**
-     * Initializes the controller class.
-     */
+    Platillo platillo;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbCategorias.getItems().add("EJECUTIVO");
@@ -81,7 +83,12 @@ public class OrdenarController implements Initializable {
         }catch (SQLException e){
             e.printStackTrace();
         }
-    }    
+    }
+    
+    @FXML
+    public void enableCategorias(ActionEvent event){
+        cmbCategorias.setDisable(false);
+    }
 
     @FXML
     private void cargarInformacion(ActionEvent event) {
@@ -91,30 +98,44 @@ public class OrdenarController implements Initializable {
             conexion.setProcedure("{call getInfoPla('" + nombrePla + "')}");
             conexion.ejecutarQuery();
             conexion.iterarResultado();
-            Platillo platillo = new Platillo(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(6), conexion.getResultFila(7));
-            lblNombre.setText(platillo.getNombre());
-            txtDescripcion.setText(platillo.getDescripcion());
-            txtIngredientes.setText(platillo.getIngredientes());
-            Image imagen = new Image(new FileInputStream("imgs\\" + conexion.getResultFila(5)));
-            imgImagen.setImage(imagen);
-            lblPrecio.setText(platillo.getPrecio() + "");
+            platillo = new Platillo(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), conexion.getResultFila(6), conexion.getResultFila(7));
+            mostrarInformacion(platillo);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Selección de platillos");
             alert.setHeaderText(null);
             alert.setContentText("Por favor, seleccione un platillo de la lista.");
             alert.showAndWait();
-        }catch (FileNotFoundException ef){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Mostrar Información - Imagen");
-            alert.setHeaderText(null);
-            alert.setContentText("No se puede mostrar imagen del platillo. La imagen no se encuentra en el sistema");
-            alert.showAndWait();
         }
     }
     
-    private void mostrarInformacion(Platillo platillo){
-        
+    private void mostrarInformacion(Platillo p){
+        try{
+            lblNombre.setText(p.getNombre());
+            txtDescripcion.setText(p.getDescripcion());
+            txtIngredientes.setText(p.getIngredientes());
+            Image imagen = new Image(new FileInputStream("imgs\\" + p.getImagen()));
+            imgImagen.setImage(imagen);
+            lblPrecio.setText(p.getPrecio() + "");
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void actualizarPrecio(Precio p){
+        lblPrecio.setText(p.getPrecio() + "");
+    }
+    
+    @FXML
+    private void validarCheckBox(){
+        if (cboxPostre.isSelected() && cboxJugo.isSelected())
+            actualizarPrecio(new Postre(new Jugo(platillo)));
+        else if(cboxPostre.isSelected() && !cboxJugo.isSelected())
+            actualizarPrecio(new Postre((platillo)));
+        else if(!cboxPostre.isSelected() && cboxJugo.isSelected())
+            actualizarPrecio(new Jugo(platillo));
+        else
+            actualizarPrecio(platillo);
     }
 
     @FXML
@@ -129,7 +150,7 @@ public class OrdenarController implements Initializable {
         }catch (SQLException sql){
             sql.printStackTrace();
         }
-
+        this.habilitar();
     }
     
     @FXML
@@ -156,6 +177,17 @@ public class OrdenarController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    
+    private void habilitar(){
+        lstPlatillos.setDisable(false);
+        btnMostrarInfo.setDisable(false);
+        txtIngredientes.setDisable(false);
+        txtDescripcion.setDisable(false);
+        cboxJugo.setDisable(false);
+        cboxPostre.setDisable(false);
+        btnCarnet.setDisable(false);
+        btnTarjeta.setDisable(false);
     }
     
     private void limpiar(){
