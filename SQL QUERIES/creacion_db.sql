@@ -22,7 +22,8 @@ CREATE TABLE `platillo_tb`(
   `temperatura_pla` int(4) NOT NULL,
   `imagen` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
-  `servido` varchar(10) NOT NULL,	
+  `servido` varchar(10) NOT NULL,
+  `precio` varchar(10) NOT NULL,  
   PRIMARY KEY (`id_platillo`)
   );
   
