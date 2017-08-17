@@ -67,7 +67,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="663.0" layoutY="547.0" text="Label">
+      <Label fx:id="lblPrecio" layoutX="663.0" layoutY="547.0">
          <font>
             <Font size="14.0" />
          </font>

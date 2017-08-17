@@ -6,14 +6,15 @@
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/controllers/cliente/ClienteController.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/controllers/cliente/OrdenarController.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/controllers/cliente/TarjetaCreditoController.java</file>
+            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/decorator/Precio.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/controllers/cliente/ListarCategoriasCLIEController.java</file>
-            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/controllers/LogginController.java</file>
+            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/decorator/Postre.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/Conexion.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/strategy/Carnet.java</file>
-            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/FXML/Ordenar.fxml</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/Platillo.java</file>
+            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/decorator/Decorator.java</file>
+            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/decorator/Jugo.java</file>
             <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/TDAs/Restaurante.java</file>
-            <file>file:/C:/Users/HOME/Documents/GitHub/DS2017-G7/src/FXML/Carnet.fxml</file>
         </group>
     </open-files>
 </project-private>

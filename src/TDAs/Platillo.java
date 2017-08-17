@@ -5,22 +5,23 @@
  */
 package TDAs;
 
+import TDAs.decorator.Precio;
+
 /**
  *
  * @author HOME
  */
-public class Platillo {
-    private String id_platillo, nombre, descripcion, ingredientes, categoria, temperatura, tipo, servido;
+public class Platillo implements Precio{
+    private String id_platillo, nombre, descripcion, categoria, ingredientes;
+    private double precio;
 
-    public Platillo(String id_platillo, String nombre, String descripcion, String ingredientes, String categoria, String temperatura, String tipo, String servido) {
+    public Platillo(String id_platillo, String nombre, String descripcion, String categoria, String ingredientes, String precio) {
         this.id_platillo = id_platillo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ingredientes = ingredientes;
         this.categoria = categoria;
-        this.temperatura = temperatura;
-        this.tipo = tipo;
-        this.servido = servido;
+        this.precio = Double.parseDouble(precio);
     }
 
     public String getNombre() {
@@ -55,28 +56,8 @@ public class Platillo {
         this.categoria = categoria;
     }
 
-    public String getTemperatura() {
-        return temperatura;
-    }
-
-    public void setTemperatura(String temperatura) {
-        this.temperatura = temperatura;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getServido() {
-        return servido;
-    }
-
-    public void setServido(String servido) {
-        this.servido = servido;
+    public double getPrecio() {
+        return precio;
     }
     
 }

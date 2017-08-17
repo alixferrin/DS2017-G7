@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.cliente.OrdenarController">
    <children>
-      <Button fx:id="btnMostrarInfo" layoutX="161.0" layoutY="538.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
+      <Button fx:id="btnMostrarInfo" layoutX="161.0" layoutY="538.0" mnemonicParsing="false" onAction="#cargarInformacion" prefHeight="25.0" prefWidth="149.0" text="Mostrar Información">
          <font>
             <Font size="14.0" />
          </font>
@@ -67,7 +67,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="663.0" layoutY="547.0" text="Label">
+      <Label fx:id="lblPrecio" layoutX="663.0" layoutY="547.0">
          <font>
             <Font size="14.0" />
          </font>

@@ -6,6 +6,7 @@
 package controllers.cliente;
 
 import TDAs.Conexion;
+import TDAs.Platillo;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -42,6 +43,8 @@ public class OrdenarController implements Initializable {
     private TextArea txtIngredientes;
     @FXML
     private Label lblNombre;
+    @FXML
+    private Label lblPrecio;
     @FXML
     private ImageView imgImagen;
     @FXML
@@ -81,20 +84,20 @@ public class OrdenarController implements Initializable {
     }    
 
     @FXML
-    private void mostrarInformacion(ActionEvent event) {
+    private void cargarInformacion(ActionEvent event) {
         try{
             String nombrePla = (String) lstPlatillos.getSelectionModel().getSelectedItem();
             this.limpiar();
-            conexion.setProcedure("{call getRest('" + nombrePla + "')}");
-            conexion.ejecutarQuery();
             conexion.setProcedure("{call getInfoPla('" + nombrePla + "')}");
             conexion.ejecutarQuery();
             conexion.iterarResultado();
-            lblNombre.setText(conexion.getResultFila(2));
-            txtDescripcion.setText(conexion.getResultFila(3));
-            txtIngredientes.setText(conexion.getResultFila(6));
+            Platillo platillo = new Platillo(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(6), conexion.getResultFila(7));
+            lblNombre.setText(platillo.getNombre());
+            txtDescripcion.setText(platillo.getDescripcion());
+            txtIngredientes.setText(platillo.getIngredientes());
             Image imagen = new Image(new FileInputStream("imgs\\" + conexion.getResultFila(5)));
             imgImagen.setImage(imagen);
+            lblPrecio.setText(platillo.getPrecio() + "");
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Selección de platillos");
@@ -108,6 +111,10 @@ public class OrdenarController implements Initializable {
             alert.setContentText("No se puede mostrar imagen del platillo. La imagen no se encuentra en el sistema");
             alert.showAndWait();
         }
+    }
+    
+    private void mostrarInformacion(Platillo platillo){
+        
     }
 
     @FXML
