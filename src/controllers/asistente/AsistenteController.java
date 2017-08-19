@@ -5,6 +5,7 @@
  */
 package controllers.asistente;
 
+import TDAs.roles.Asistente;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +45,13 @@ public class AsistenteController implements Initializable {
     private StackPane loaderPane;
     @FXML
     private MenuItem menuPlatillo;
-
+    
+    public Asistente asistente;
+    
+    public AsistenteController(Asistente asistente){
+        this.asistente = asistente;
+    }
+    
     @FXML
     private void showAgregarPlatillo(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();

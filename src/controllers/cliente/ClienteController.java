@@ -5,6 +5,7 @@
  */
 package controllers.cliente;
 
+import TDAs.roles.Cliente;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,12 +38,19 @@ public class ClienteController implements Initializable {
     @FXML
     private Menu menuPedido;
     
+    public Cliente cliente;
+    
     @FXML
     private void showListarCategoriasCLIE(ActionEvent event) throws IOException{
         loaderPane.getChildren().clear();
         Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasCLIE.fxml"));
         loaderPane.getChildren().add(n);
         StackPane.setAlignment(n,Pos.CENTER);
+    }
+    
+    public ClienteController(Cliente cliente){
+        this.cliente = cliente;
+        System.out.println(cliente.toString());
     }
     
     @Override
