@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,6 +68,7 @@ public class OrdenarController implements Initializable {
     @FXML
     private Button btnTarjeta;
 
+    DecimalFormat df = new DecimalFormat("#.00");
     Conexion conexion = Conexion.getInstance();
     Platillo platillo;
     
@@ -116,14 +118,14 @@ public class OrdenarController implements Initializable {
             txtIngredientes.setText(p.getIngredientes());
             Image imagen = new Image(new FileInputStream("imgs\\" + p.getImagen()));
             imgImagen.setImage(imagen);
-            lblPrecio.setText(p.getPrecio() + "");
+            lblPrecio.setText("$" + df.format(p.getPrecio()));
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }
     }
     
     private void actualizarPrecio(Precio p){
-        lblPrecio.setText(p.getPrecio() + "");
+        lblPrecio.setText("$" + df.format(p.getPrecio()));
     }
     
     @FXML

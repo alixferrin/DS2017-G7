@@ -18,14 +18,14 @@
          </font>
       </Button>
       <TextArea fx:id="txtIngredientes" disable="true" editable="false" layoutX="336.0" layoutY="175.0" prefHeight="140.0" prefWidth="244.0" wrapText="true" />
-      <Label fx:id="lblNombre" layoutX="411.0" layoutY="120.0">
+      <Label fx:id="lblNombre" layoutX="404.0" layoutY="124.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <ImageView fx:id="imgImagen" fitHeight="370.0" fitWidth="341.0" layoutX="613.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
       <TextArea fx:id="txtDescripcion" disable="true" editable="false" layoutX="336.0" layoutY="350.0" prefHeight="177.0" prefWidth="244.0" wrapText="true" />
-      <Label layoutX="613.0" layoutY="123.0" text="Imagen:">
+      <Label layoutX="613.0" layoutY="130.0" text="Imagen:">
          <font>
             <Font size="14.0" />
          </font>
