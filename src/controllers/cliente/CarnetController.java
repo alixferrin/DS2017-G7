@@ -5,8 +5,11 @@
  */
 package controllers.cliente;
 
+import TDAs.roles.Cliente;
+import TDAs.strategy.Carnet;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,11 +30,16 @@ public class CarnetController implements Initializable {
     @FXML
     private ComboBox cmbHorarios;
     @FXML
-    private PasswordField txtContraseña;
+    private PasswordField txtContrasenia;
 
+    private Cliente cliente;
     /**
      * Initializes the controller class.
      */
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbHorarios.getItems().add("11:00 - 11:30");
@@ -43,5 +51,14 @@ public class CarnetController implements Initializable {
         cmbHorarios.getItems().add("14:00 - 14:30");
         cmbHorarios.getItems().add("14:30 - 15:00");
     }    
+
+    @FXML
+    private void pagar(ActionEvent event) {
+        if (cliente.getUserName().equals(txtUsuario.getText()) && cliente.getPassword().equals(txtContrasenia.getText()))
+            cliente.pagar(new Carnet());
+        else
+            System.out.println("Usuario o contraseña incorrectos");
+    }
+    
     
 }

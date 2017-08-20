@@ -10,6 +10,7 @@ import TDAs.Platillo;
 import TDAs.decorator.Jugo;
 import TDAs.decorator.Postre;
 import TDAs.decorator.Precio;
+import TDAs.roles.Cliente;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,7 +22,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -32,7 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Popup;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -71,6 +71,11 @@ public class OrdenarController implements Initializable {
     DecimalFormat df = new DecimalFormat("#.00");
     Conexion conexion = Conexion.getInstance();
     Platillo platillo;
+    Cliente cliente;
+    
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -171,8 +176,12 @@ public class OrdenarController implements Initializable {
     @FXML
     private void showCarnet(ActionEvent event){
         Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Carnet.fxml"));
         try{
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/Carnet.fxml"))));
+            AnchorPane carnetView = loader.load();
+            CarnetController controler = loader.getController();
+            controler.setCliente(cliente);
+            stage.setScene(new Scene(carnetView));
             stage.setTitle("Pago con carnet");
             stage.centerOnScreen();
             stage.show();

@@ -48,7 +48,7 @@ public class AsistenteController implements Initializable {
     
     public Asistente asistente;
     
-    public AsistenteController(Asistente asistente){
+    public void setAsistente(Asistente asistente){
         this.asistente = asistente;
     }
     

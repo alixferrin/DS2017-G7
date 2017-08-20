@@ -11,11 +11,9 @@ package TDAs.strategy;
  */
 public class Carnet implements FormaDePago {
     
-    
-    
     @Override
     public void pagar() {
-        System.out.println("Pagar");
+        System.out.println("Pagar Carnet");
     }
     
 }

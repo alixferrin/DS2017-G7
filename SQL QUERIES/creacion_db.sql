@@ -1,4 +1,4 @@
-CREATE DATABASE sistemaBares;
+CREAid_carnetTE DATABASE sistemaBares;
 
 USE sistemaBares;
 
@@ -54,8 +54,6 @@ CREATE TABLE `carnet_tb`(
   PRIMARY KEY (`id_carnet`),
   CONSTRAINT `idcarnet_FK1` FOREIGN KEY (`id_carnet`) REFERENCES `usuario_tb` (`id_usuario`)
   );
-
-use sistemabares;
 
 CREATE TABLE `orden_tb`(
   `id_orden` mediumint NOT NULL AUTO_INCREMENT,

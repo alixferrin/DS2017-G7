@@ -270,3 +270,5 @@ BEGIN
 	SELECT * FROM platillo_tb AS p JOIN menu_tb AS m ON m.id_platillo = p.id_platillo JOIN restaurante_tb AS r ON m.id_restaurante = r.id_restaurante AND r.nombre_rest = nombre;
 END $$
 DELIMITER ;
+
+SELECT * FROM carnet_tb;

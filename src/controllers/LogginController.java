@@ -50,7 +50,6 @@ public class LogginController implements Initializable {
     private Label lblContrasenia;
     
     Conexion conexion = Conexion.getInstance();
-    Cliente cliente;
     
     private void showMenu(ActionEvent event, String fxmlDocument, Usuario user) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -62,15 +61,15 @@ public class LogginController implements Initializable {
             */
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/" + fxmlDocument));
+            AnchorPane userView = (AnchorPane) loader.load();
             if (user.getLevel().equals("1")){
-                ClienteController controler = new ClienteController((Cliente)user);
-                loader.setController(controler);
+                ClienteController controler = loader.getController();
+                controler.setCliente((Cliente)user);
             }else if(user.getLevel().equals("2")){
-                AsistenteController controler = new AsistenteController((Asistente)user);
-                loader.setController(controler);
+                AsistenteController controler = loader.getController();
+                controler.setAsistente((Asistente)user);
             }
             
-            AnchorPane userView = (AnchorPane) loader.load();
             stage.setScene(new Scene(userView));
             stage.setTitle(fxmlDocument.substring(0, fxmlDocument.lastIndexOf(".")));
             stage.centerOnScreen();
@@ -95,7 +94,7 @@ public class LogginController implements Initializable {
                 level = conexion.getResultFila(6);
                 System.out.println(level);
                 if (level.equals("1")){
-                    cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
+                    Cliente cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
                     this.showMenu(event, "Cliente.fxml", cliente);
                 }else{
                     Asistente asistente = new Asistente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
