@@ -181,6 +181,7 @@ public class OrdenarController implements Initializable {
             AnchorPane carnetView = loader.load();
             CarnetController controler = loader.getController();
             controler.setCliente(cliente);
+            controler.setCantPagar(Integer.parseInt(lblPrecio.getText()));
             stage.setScene(new Scene(carnetView));
             stage.setTitle("Pago con carnet");
             stage.centerOnScreen();

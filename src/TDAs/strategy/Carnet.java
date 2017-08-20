@@ -12,7 +12,7 @@ package TDAs.strategy;
 public class Carnet implements FormaDePago {
     
     @Override
-    public void pagar() {
+    public void pagar(int cantidad) {
         System.out.println("Pagar Carnet");
     }
     

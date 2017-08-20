@@ -17,8 +17,8 @@ public class Cliente extends Usuario {
         super(cedula, nombre, apellido, userName, password, level);
     }
     
-    public void pagar(FormaDePago forma){
-        forma.pagar();
+    public void pagar(FormaDePago forma, int cantidad){
+        forma.pagar(cantidad);
     }
     
 }

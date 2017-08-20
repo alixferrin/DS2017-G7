@@ -33,11 +33,14 @@ public class CarnetController implements Initializable {
     private PasswordField txtContrasenia;
 
     private Cliente cliente;
-    /**
-     * Initializes the controller class.
-     */
+    private int cantPagar;
+    
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
+    }
+    
+    public void setCantPagar(int cantidad){
+        this.cantPagar = cantidad;
     }
     
     @Override
@@ -55,7 +58,7 @@ public class CarnetController implements Initializable {
     @FXML
     private void pagar(ActionEvent event) {
         if (cliente.getUserName().equals(txtUsuario.getText()) && cliente.getPassword().equals(txtContrasenia.getText()))
-            cliente.pagar(new Carnet());
+            cliente.pagar(new Carnet(), cantPagar);
         else
             System.out.println("Usuario o contraseña incorrectos");
     }
