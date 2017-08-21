@@ -94,7 +94,7 @@ public class LogginController implements Initializable {
                 level = conexion.getResultFila(6);
                 System.out.println(level);
                 if (level.equals("1")){
-                    Cliente cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);
+                    Cliente cliente = new Cliente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level, conexion.getResultFila(7), Integer.parseInt(conexion.getResultFila(8)));
                     this.showMenu(event, "Cliente.fxml", cliente);
                 }else{
                     Asistente asistente = new Asistente(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), level);

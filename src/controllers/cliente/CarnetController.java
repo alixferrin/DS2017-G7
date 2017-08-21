@@ -33,13 +33,13 @@ public class CarnetController implements Initializable {
     private PasswordField txtContrasenia;
 
     private Cliente cliente;
-    private int cantPagar;
+    private double cantPagar;
     
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
     
-    public void setCantPagar(int cantidad){
+    public void setCantPagar(double cantidad){
         this.cantPagar = cantidad;
     }
     

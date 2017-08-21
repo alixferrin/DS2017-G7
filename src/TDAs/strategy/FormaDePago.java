@@ -10,5 +10,5 @@ package TDAs.strategy;
  * @author HOME
  */
 public interface FormaDePago {
-    void pagar(int cantidad);
+    void pagar(String id, double cantidad);
 }

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,7 +69,6 @@ public class OrdenarController implements Initializable {
     @FXML
     private Button btnTarjeta;
 
-    DecimalFormat df = new DecimalFormat("#.00");
     Conexion conexion = Conexion.getInstance();
     Platillo platillo;
     Cliente cliente;
@@ -123,14 +123,14 @@ public class OrdenarController implements Initializable {
             txtIngredientes.setText(p.getIngredientes());
             Image imagen = new Image(new FileInputStream("imgs\\" + p.getImagen()));
             imgImagen.setImage(imagen);
-            lblPrecio.setText("$" + df.format(p.getPrecio()));
+            lblPrecio.setText("$" + p.getPrecio());
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }
     }
     
     private void actualizarPrecio(Precio p){
-        lblPrecio.setText("$" + df.format(p.getPrecio()));
+        lblPrecio.setText("$" + p.getPrecio());
     }
     
     @FXML
@@ -181,7 +181,7 @@ public class OrdenarController implements Initializable {
             AnchorPane carnetView = loader.load();
             CarnetController controler = loader.getController();
             controler.setCliente(cliente);
-            controler.setCantPagar(Integer.parseInt(lblPrecio.getText()));
+            controler.setCantPagar(Double.valueOf(lblPrecio.getText().substring(1)));
             stage.setScene(new Scene(carnetView));
             stage.setTitle("Pago con carnet");
             stage.centerOnScreen();

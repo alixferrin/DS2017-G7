@@ -26,7 +26,7 @@ public class TarjetaCreditoController implements Initializable {
     @FXML
     private ComboBox cmbMes;
     @FXML
-    private ComboBox cmbAños;
+    private ComboBox cmbAnios;
     @FXML
     private Button btnPagar;
     @FXML
@@ -59,15 +59,15 @@ public class TarjetaCreditoController implements Initializable {
         cmbMes.getItems().add("11");
         cmbMes.getItems().add("12");
         
-        cmbAños.getItems().add("2017");
-        cmbAños.getItems().add("2018");
-        cmbAños.getItems().add("2019");
-        cmbAños.getItems().add("2020");
-        cmbAños.getItems().add("2021");
-        cmbAños.getItems().add("2022");
-        cmbAños.getItems().add("2023");
-        cmbAños.getItems().add("2024");
-        cmbAños.getItems().add("2025");
+        cmbAnios.getItems().add("2017");
+        cmbAnios.getItems().add("2018");
+        cmbAnios.getItems().add("2019");
+        cmbAnios.getItems().add("2020");
+        cmbAnios.getItems().add("2021");
+        cmbAnios.getItems().add("2022");
+        cmbAnios.getItems().add("2023");
+        cmbAnios.getItems().add("2024");
+        cmbAnios.getItems().add("2025");
     }    
     
 }

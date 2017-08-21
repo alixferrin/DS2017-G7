@@ -24,7 +24,7 @@
       <Label layoutX="430.0" layoutY="128.0" text="CVC" />
       <TextField fx:id="txtCVC" layoutX="430.0" layoutY="150.0" prefHeight="25.0" prefWidth="52.0" />
       <ComboBox fx:id="cmbMes" layoutX="286.0" layoutY="150.0" prefHeight="25.0" prefWidth="23.0" />
-      <ComboBox fx:id="cmbAños" layoutX="341.0" layoutY="150.0" prefHeight="25.0" prefWidth="73.0" />
+      <ComboBox fx:id="cmbAnios" layoutX="341.0" layoutY="150.0" prefHeight="25.0" prefWidth="73.0" />
       <Label layoutX="285.0" layoutY="127.0" text="Fecha de expiracion">
          <font>
             <Font size="14.0" />

@@ -5,6 +5,8 @@
  */
 package TDAs.strategy;
 
+import TDAs.Conexion;
+
 /**
  *
  * @author HOME
@@ -12,8 +14,8 @@ package TDAs.strategy;
 public class TarjetaDeCredito implements FormaDePago{
 
     @Override
-    public void pagar() {
-        System.out.println("Pagar");
+    public void pagar(String id, double cantidad) {
+        
     }
     
 }

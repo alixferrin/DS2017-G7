@@ -5,6 +5,9 @@
  */
 package TDAs.strategy;
 
+import TDAs.Conexion;
+import java.sql.SQLException;
+
 /**
  *
  * @author HOME
@@ -12,8 +15,15 @@ package TDAs.strategy;
 public class Carnet implements FormaDePago {
     
     @Override
-    public void pagar(int cantidad) {
-        System.out.println("Pagar Carnet");
+    public void pagar(String id, double cantidad) {
+        Conexion con = Conexion.getInstance();
+        try{
+            con.setProcedure("Call updateSaldos('" + id + "'," + cantidad + ")");
+            con.ejecutarQuery();
+            
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     
 }

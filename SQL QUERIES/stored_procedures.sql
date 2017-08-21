@@ -154,9 +154,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `login` (IN nick varchar(50), IN pass varchar(50))
 BEGIN
-	SELECT *
-    from usuario_tb
-    where username = nick and contrasenia = pass; 
+	SELECT * from usuario_tb JOIN carnet_tb ON id_carnet = id_usuario AND username = nick and contrasenia = pass; 
 END $$
 DELIMITER ;
 
@@ -271,4 +269,11 @@ BEGIN
 END $$
 DELIMITER ;
 
-SELECT * FROM carnet_tb;
+
+/* Carnet */
+DELIMITER $$
+CREATE PROCEDURE `updateSaldos` (IN idUser VARCHAR(50), IN cantidad INT)
+BEGIN
+	UPDATE carnet_tb SET saldo = cantidad WHERE id_carnet = idUser;
+END $$
+DELIMITER ;
