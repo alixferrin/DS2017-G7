@@ -58,8 +58,9 @@ public class Conexion {
     }
     
     public void setConnexion(String user, String password) throws SQLException{
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares", user, password);
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabares?verifyServerCertificate=false&useSSL=true", user, password);
     }
+//    jdbc:mysql://localhost:3306/Peoples?autoReconnect=true&useSSL=false
     
     public void ejecutarQuery() throws SQLException{
         result = procedure.executeQuery();

@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sistemasbares.Main;
 
@@ -55,25 +56,34 @@ public class AsistenteController implements Initializable {
     @FXML
     private void showAgregarPlatillo(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
-        loaderPane.getChildren().add(n);
-        StackPane.setAlignment(n,Pos.CENTER);
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
+        AnchorPane ordenarView = loader.load();
+        loaderPane.getChildren().add(ordenarView);
+        //Node n = FXMLLoader.load(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
+        //loaderPane.getChildren().add(n);
+        //StackPane.setAlignment(n,Pos.CENTER);
     }
     
     @FXML
     private void showListarPlatillos(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarPlatillos.fxml"));
-        loaderPane.getChildren().add(n);
-        StackPane.setAlignment(n, Pos.CENTER);
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/ListarPlatillos.fxml"));
+        AnchorPane ordenarView = loader.load();
+        loaderPane.getChildren().add(ordenarView);
+        //Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarPlatillos.fxml"));
+        //loaderPane.getChildren().add(n);
+        //StackPane.setAlignment(n, Pos.CENTER);
     }
     
     @FXML
     private void showListarCategoriasASIS(ActionEvent event) throws IOException {
         loaderPane.getChildren().clear();
-        Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
-        loaderPane.getChildren().add(n);
-        StackPane.setAlignment(n, Pos.CENTER);
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
+        AnchorPane ordenarView = loader.load();
+        loaderPane.getChildren().add(ordenarView);
+        //Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
+        //loaderPane.getChildren().add(n);
+        //StackPane.setAlignment(n, Pos.CENTER);
     }
 
     @Override
