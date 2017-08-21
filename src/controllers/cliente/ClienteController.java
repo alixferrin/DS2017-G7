@@ -67,9 +67,6 @@ public class ClienteController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Buscar.fxml"));
         AnchorPane ordenarView = loader.load();
         loaderPane.getChildren().add(ordenarView);
-        //Node n = FXMLLoader.load(getClass().getResource("/FXML/Buscar.fxml"));
-        //loaderPane.getChildren().add(n);
-        //StackPane.setAlignment(n,Pos.CENTER);
     }
 
     @FXML

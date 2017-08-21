@@ -5,17 +5,21 @@
  */
 package controllers.cliente;
 
+import TDAs.Conexion;
 import TDAs.roles.Cliente;
 import TDAs.strategy.Carnet;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,6 +38,7 @@ public class CarnetController implements Initializable {
 
     private Cliente cliente;
     private double cantPagar;
+    private Conexion con = Conexion.getInstance();
     
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
@@ -57,11 +62,18 @@ public class CarnetController implements Initializable {
 
     @FXML
     private void pagar(ActionEvent event) {
-        if (cliente.getUserName().equals(txtUsuario.getText()) && cliente.getPassword().equals(txtContrasenia.getText()))
-            cliente.pagar(new Carnet(), cantPagar);
-        else
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        if (cliente.getUserName().equals(txtUsuario.getText()) && cliente.getPassword().equals(txtContrasenia.getText())){
+            try{
+                cliente.pagar(new Carnet(), cantPagar);
+                con.setProcedure("{call updateOrdenes('" + (String)cmbHorarios.getValue() + "','" + cliente.getId_carnet() + "')}");
+                con.ejecutarQuery();
+                stage.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }else
             System.out.println("Usuario o contraseña incorrectos");
     }
-    
     
 }

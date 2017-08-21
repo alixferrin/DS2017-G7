@@ -20,7 +20,6 @@ public class Carnet implements FormaDePago {
         try{
             con.setProcedure("Call updateSaldos('" + id + "'," + cantidad + ")");
             con.ejecutarQuery();
-            
         }catch (SQLException e){
             e.printStackTrace();
         }

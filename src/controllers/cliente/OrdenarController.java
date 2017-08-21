@@ -105,7 +105,8 @@ public class OrdenarController implements Initializable {
             conexion.setProcedure("{call getInfoPla('" + nombrePla + "')}");
             conexion.ejecutarQuery();
             conexion.iterarResultado();
-            platillo = new Platillo(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), conexion.getResultFila(4), conexion.getResultFila(5), conexion.getResultFila(6), conexion.getResultFila(7));
+            platillo = new Platillo(conexion.getResultFila(1), conexion.getResultFila(2), conexion.getResultFila(3), 
+                    conexion.getResultFila(4), conexion.getResultFila(5), conexion.getResultFila(6), conexion.getResultFila(7));
             mostrarInformacion(platillo);
         }catch (SQLException sql){
             Alert alert = new Alert(Alert.AlertType.ERROR);

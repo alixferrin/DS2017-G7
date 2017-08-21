@@ -40,8 +40,6 @@ public class AgregarPlatilloController implements Initializable {
     @FXML
     private TextField txtNombre;
     @FXML
-    private TextField txtCategoria;
-    @FXML
     private TextArea txtDescripcion;
     @FXML
     private ComboBox cmbServido;
@@ -61,6 +59,8 @@ public class AgregarPlatilloController implements Initializable {
     private TextField txtTemp;
     @FXML
     private ComboBox cmbRestaurante;
+    @FXML
+    private ComboBox cmbCategorias;
     
     private String[] datosImagen = {"",""};
     File foto;
@@ -81,6 +81,10 @@ public class AgregarPlatilloController implements Initializable {
             conexion.ejecutarQuery();
             while (conexion.iterarResultado())
                 cmbRestaurante.getItems().add(conexion.getResultFila(1));
+            conexion.setProcedure("{call listCatASIS('" + Conexion.asisRest + "')}");
+            conexion.ejecutarQuery();
+            while (conexion.iterarResultado())
+                cmbCategorias.getItems().add(conexion.getResultFila(1));
         }catch (SQLException sql){
             sql.printStackTrace();
         }
@@ -88,11 +92,19 @@ public class AgregarPlatilloController implements Initializable {
 
     @FXML
     private void guardarPlatillo(ActionEvent event) {
+        double precio;
         if (!this.datosImagen[0].equals("") || this.foto != null){
+            String categoria = (String) cmbCategorias.getValue();
+            if (categoria.equals("EJECUTIVO"))
+                precio = 3.0;
+            else
+                precio = 2.50;
             try{
                 String IDRest = "";
                 String IDPlat = "";
-                conexion.setProcedure("{call nuevoPlatillo('" + txtNombre.getText().toUpperCase() + "','" + txtDescripcion.getText().toUpperCase() + "','" + txtIngredientes.getText().toUpperCase() + "','" + txtCategoria.getText().toUpperCase() + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "')}");
+                conexion.setProcedure("{call nuevoPlatillo('" + txtNombre.getText().toUpperCase() + "','" + txtDescripcion.getText().toUpperCase() + "','" + 
+                        txtIngredientes.getText().toUpperCase() + "','" + categoria + "','" + txtTemp.getText() + "','" + datosImagen[0] + "','" + 
+                        (String)cmbTipo.getValue() + "','" + (String)cmbServido.getValue() + "'," + precio + ")}");
                 conexion.ejecutarQuery();
                 conexion.setProcedure("{call getIDRest('" + (String)cmbRestaurante.getValue() + "')}");
                 conexion.ejecutarQuery();
@@ -164,7 +176,6 @@ public class AgregarPlatilloController implements Initializable {
     
     private void limpiar(){
         txtNombre.setText("");
-        txtCategoria.setText("");
         txtDescripcion.setText("");
         txtIngredientes.setText("");
         imgImagen.setImage(null);

@@ -59,9 +59,6 @@ public class AsistenteController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
         AnchorPane ordenarView = loader.load();
         loaderPane.getChildren().add(ordenarView);
-        //Node n = FXMLLoader.load(getClass().getResource("/FXML/AgregarPlatillo.fxml"));
-        //loaderPane.getChildren().add(n);
-        //StackPane.setAlignment(n,Pos.CENTER);
     }
     
     @FXML
@@ -70,9 +67,6 @@ public class AsistenteController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/ListarPlatillos.fxml"));
         AnchorPane ordenarView = loader.load();
         loaderPane.getChildren().add(ordenarView);
-        //Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarPlatillos.fxml"));
-        //loaderPane.getChildren().add(n);
-        //StackPane.setAlignment(n, Pos.CENTER);
     }
     
     @FXML
@@ -81,9 +75,6 @@ public class AsistenteController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
         AnchorPane ordenarView = loader.load();
         loaderPane.getChildren().add(ordenarView);
-        //Node n = FXMLLoader.load(getClass().getResource("/FXML/ListarCategoriasASIS.fxml"));
-        //loaderPane.getChildren().add(n);
-        //StackPane.setAlignment(n, Pos.CENTER);
     }
 
     @Override

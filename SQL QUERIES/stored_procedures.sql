@@ -29,9 +29,9 @@ DELIMITER ;
 
 /*PARA platillo_tb*/
 DELIMITER $$
-CREATE PROCEDURE `nuevoPlatillo` (IN newNombre varchar(50), IN newDescrip varchar(250), IN newIngre VARCHAR(250), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10))
+CREATE PROCEDURE `nuevoPlatillo` (IN newNombre varchar(50), IN newDescrip varchar(250), IN newIngre VARCHAR(250), IN newCategoria varchar(50), IN newTemp int(4), IN newImage varchar(50), IN newTipo varchar(50), IN newServido varchar(10), IN newPrecio DOUBLE)
 BEGIN
-	insert into platillo_tb values (default, newNombre, newDescrip, newIngre, newCategoria, newTemp, newImage, newTipo, newServido);
+	insert into platillo_tb values (default, newNombre, newDescrip, newIngre, newCategoria, newTemp, newImage, newTipo, newServido, newPrecio);
 END $$
 DELIMITER ;
 
@@ -88,22 +88,9 @@ BEGIN
 END $$
 DELIMITER ;
 
-/*PARA restaurante_tb*/
-DELIMITER $$
-CREATE PROCEDURE `nuevoRestaurante` (IN newID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10), IN newCompra varchar(10))
-BEGIN
-	insert into restaurante_tb values (newID, newNombre, newDireccion, newTelf, newDueno, newAsist, newCompra);
-END $$
-DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE `modificarRestaurante` (IN ID varchar(10), IN newNombre varchar(50), IN newDireccion varchar(50), IN newTelf varchar(50), IN newDueno varchar(50), IN newAsist varchar(10), IN newCompra varchar(10))
-BEGIN
-	update restaurante_tb
-    set nombre_rest = newNombre, direccion_rest = newDireccion, telf_rest = newTelf, dueno_rest = newDueno, asist_rest = newAsist, opCompra_rest = newCompra
-    where id_restaurante = ID;
-END $$
-DELIMITER ;
+
+/*PARA restaurante_tb*/
 
 DELIMITER $$
 CREATE PROCEDURE `listarRestaurantes` ()
@@ -269,11 +256,18 @@ BEGIN
 END $$
 DELIMITER ;
 
-
 /* Carnet */
 DELIMITER $$
-CREATE PROCEDURE `updateSaldos` (IN idUser VARCHAR(50), IN cantidad INT)
+CREATE PROCEDURE `updateSaldos` (IN idUser VARCHAR(50), IN cantidad DOUBLE)
 BEGIN
 	UPDATE carnet_tb SET saldo = cantidad WHERE id_carnet = idUser;
+END $$
+DELIMITER ;
+
+/* Orden */
+DELIMITER $$
+CREATE PROCEDURE `updateOrdenes` (IN hora VARCHAR(50), IN nombre VARCHAR(50))
+BEGIN
+	INSERT INTO orden_tb VALUES (DEFAULT, hora, nombre);
 END $$
 DELIMITER ;

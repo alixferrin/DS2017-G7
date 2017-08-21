@@ -6,6 +6,7 @@
 package TDAs.roles;
 
 import TDAs.strategy.FormaDePago;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -25,8 +26,21 @@ public class Cliente extends Usuario {
         double saldoTotal = this.saldo - cantidad;
         if (saldoTotal > 0){
             forma.pagar(this.id_carnet, saldoTotal);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pedido");
+            alert.setHeaderText("Se ha registrado su pedido");
+            alert.setContentText("El numero de su pedido es: ?");
+            alert.showAndWait();
         }else
             System.out.println("No tiene fondos suficientes;");
+    }
+
+    public String getId_carnet() {
+        return id_carnet;
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
     
 }

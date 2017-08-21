@@ -37,7 +37,6 @@
          </font>
       </Label>
       <TextField fx:id="txtNombre" layoutX="190.0" layoutY="71.0" prefHeight="25.0" prefWidth="285.0" />
-      <TextField fx:id="txtCategoria" layoutX="190.0" layoutY="106.0" prefHeight="25.0" prefWidth="285.0" />
       <TextArea fx:id="txtDescripcion" layoutX="190.0" layoutY="246.0" prefHeight="93.0" prefWidth="285.0" wrapText="true" />
       <ComboBox fx:id="cmbServido" layoutX="190.0" layoutY="141.0" prefHeight="25.0" prefWidth="285.0" />
       <ComboBox fx:id="cmbTipo" layoutX="284.0" layoutY="176.0" prefHeight="25.0" prefWidth="190.0" />
@@ -80,5 +79,6 @@
          </font>
       </Label>
       <ComboBox fx:id="cmbRestaurante" layoutX="191.0" layoutY="212.0" prefHeight="25.0" prefWidth="285.0" />
+      <ComboBox fx:id="cmbCategorias" layoutX="191.0" layoutY="106.0" prefHeight="25.0" prefWidth="285.0" />
    </children>
 </AnchorPane>
