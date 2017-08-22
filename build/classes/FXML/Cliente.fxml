@@ -23,7 +23,6 @@
             <Menu fx:id="menuPedido" mnemonicParsing="false" text="Realizar pedido">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#showComprar" text="Hacer pedido en linea" />
-                  <MenuItem mnemonicParsing="false" text="Carnet" />
               </items>
             </Menu>
           <Menu fx:id="menuLogOut" mnemonicParsing="false" text="Cerrar ...">

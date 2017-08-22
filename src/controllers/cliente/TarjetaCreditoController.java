@@ -78,6 +78,7 @@ public class TarjetaCreditoController implements Initializable {
     
     @FXML
     private void pagar(ActionEvent event) {
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Compra por tarjeta");
         Calendar cal = Calendar.getInstance();
@@ -98,6 +99,7 @@ public class TarjetaCreditoController implements Initializable {
             alert.setContentText("Su orden ha sido cargada a su tarjeta de crédito");
         }
         alert.showAndWait();
+        stage.close();
     }
     
 }
