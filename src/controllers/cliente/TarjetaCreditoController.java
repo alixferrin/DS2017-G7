@@ -6,12 +6,17 @@
 package controllers.cliente;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -69,5 +74,33 @@ public class TarjetaCreditoController implements Initializable {
         cmbAnios.getItems().add("2024");
         cmbAnios.getItems().add("2025");
     }    
+    
+    @FXML
+    private void pagar(ActionEvent event) {
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Date fecha = new Date();
+        if (fecha.getYear() > (int)cmbAnios.getValue() && txtTarjeta.getText().length() > 12 && txtTarjeta.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Compra por tarjeta");
+            alert.setHeaderText("Ingreso de tarjeta Válido");
+            alert.setContentText("Su orden ha sido cargada a su tarjeta de Crédito");
+            alert.showAndWait();
+        }else if (fecha.getYear() == (int)cmbAnios.getValue() && fecha.getMonth() > (int)cmbMes.getValue() && 
+                    txtTarjeta.getText().length() > 12 && txtTarjeta.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Compra por tarjeta");
+            alert.setHeaderText("Ingreso de tarjeta Válido");
+            alert.setContentText("Su orden ha sido cargada a su tarjeta de Crédito");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error de ingreso tarjeta");
+            alert.setHeaderText("Error al Ingresar Tarjeta :(");
+            alert.setContentText("Su tarjeta ha expirado");
+            alert.showAndWait();
+        }
+            
+         
+    }
     
 }
